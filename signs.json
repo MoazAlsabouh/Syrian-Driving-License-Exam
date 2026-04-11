@@ -1,0 +1,481 @@
+{
+  "title": "بنك أسئلة الإشارات المرورية الشامل",
+  "total_questions": 130,
+  "questions": [
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M60 70Q40 70 40 50T60 30' fill='none' stroke='#000' stroke-width='6'/><polygon points='55,25 65,30 55,35' fill='#000'/></svg>",
+      "options": ["منعطف يساري", "ممنوع الانعطاف نحو اليسار", "طريق ضيق من جهة واحدة", "ريح جانبية قوية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M40 70Q60 70 60 50T40 30' fill='none' stroke='#000' stroke-width='6'/><polygon points='45,25 35,30 45,35' fill='#000'/></svg>",
+      "options": ["منعطف يميني", "ممنوع الانعطاف نحو اليمين", "طريق ضيق من جهة واحدة", "ريح جانبية قوية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M50 75Q30 60 50 50T50 25' fill='none' stroke='#000' stroke-width='6'/><polygon points='45,20 55,25 45,30' fill='#000'/></svg>",
+      "options": ["منعطف مزدوج الأول يساري", "طريق ضيق من جهتين", "طريق زلقة", "منحدر خطر"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M50 75Q70 60 50 50T50 25' fill='none' stroke='#000' stroke-width='6'/><polygon points='55,20 45,25 55,30' fill='#000'/></svg>",
+      "options": ["منعطف مزدوج الأول يميني", "طريق ضيق من جهتين", "طريق زلقة", "مرتفع خطر"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><polygon points='30,70 70,70 70,40' fill='#000'/><text x='50' y='35' font-family='Arial' font-size='14' font-weight='bold' text-anchor='middle'>10%</text></svg>",
+      "options": ["منحدر خطر", "طريق زلقة", "جسر متحرك", "منفذ إلى رصيف أو ضفة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><polygon points='30,70 70,70 30,40' fill='#000'/><text x='50' y='35' font-family='Arial' font-size='14' font-weight='bold' text-anchor='middle'>10%</text></svg>",
+      "options": ["مرتفع خطر", "طريق زلقة", "جسر متحرك", "منفذ إلى رصيف أو ضفة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M35 80L45 50L45 30M65 80L55 50L55 30' fill='none' stroke='#000' stroke-width='6'/></svg>",
+      "options": ["طريق ضيق من جهتين", "مرتفع خطر", "منحدر خطر", "جسر متحرك"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M35 80L35 30M65 80L55 50L55 30' fill='none' stroke='#000' stroke-width='6'/></svg>",
+      "options": ["طريق ضيق من جهة واحدة", "مرتفع خطر", "منحدر خطر", "منعطف يساري"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M20 75Q50 65 80 80' fill='none' stroke='#2196f3' stroke-width='4'/><rect x='30' y='45' width='35' height='15' rx='3' fill='#000' transform='rotate(-15 45 50)'/></svg>",
+      "options": ["جسر متحرك", "مرتفع خطر", "ممر مشاة", "أشغال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M20 75Q50 65 80 80' fill='none' stroke='#2196f3' stroke-width='4'/><rect x='30' y='45' width='35' height='15' rx='3' fill='#000' transform='rotate(15 45 50)'/></svg>",
+      "options": ["منفذ إلى رصيف أو ضفة", "أخطار مختلفة", "أشغال", "منحدر خطر"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M25 70Q35 50 50 70Q65 50 75 70' fill='none' stroke='#000' stroke-width='6'/></svg>",
+      "options": ["طريق غير مستوي", "طريق ضيق من جهتين", "مقطع سكة حديدية مخفور", "مقطع سكة حديدية غير مخفور"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><rect x='40' y='40' width='20' height='25' fill='#000'/><path d='M30 80Q45 60 45 70M70 80Q55 60 55 70' fill='none' stroke='#000' stroke-width='2'/></svg>",
+      "options": ["طريق زلقة", "طريق مفروشة بالحصى", "أخطار مختلفة", "منطقة ثلوج ملزم بوضع سلاسل للعجلات"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><rect x='30' y='55' width='20' height='15' fill='#000'/><circle cx='60' cy='65' r='2' fill='#000'/><circle cx='65' cy='70' r='2' fill='#000'/><path d='M25 75L75 75' stroke='#000' stroke-width='2'/></svg>",
+      "options": ["طريق مفروشة بالحصى", "طريق زلقة", "مقطع تساقط أحجار", "أشغال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M70 30L70 80L90 80' fill='#ccc'/><circle cx='60' cy='60' r='5' fill='#000'/><circle cx='45' cy='70' r='4' fill='#000'/></svg>",
+      "options": ["مقطع تساقط أحجار", "طريق مفروشة بالحصى", "أخطار مختلفة", "أشغال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><circle cx='50' cy='35' r='5' fill='#000'/><path d='M50 40L50 60L40 75M50 60L60 75M40 45L60 45' fill='none' stroke='#000' stroke-width='4'/><path d='M25 80L75 80' stroke='#000' stroke-width='4' stroke-dasharray='8,4'/></svg>",
+      "options": ["ممر مشاة", "ممنوع مرور المشاة", "طريق إجباري للمشاة", "أطفال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><circle cx='40' cy='40' r='4' fill='#000'/><path d='M40 44L40 60L30 70M40 60L45 70M30 48L48 48' fill='none' stroke='#000' stroke-width='3'/><circle cx='60' cy='45' r='3' fill='#000'/><path d='M60 48L60 60L55 70M60 60L65 70M52 52L65 52' fill='none' stroke='#000' stroke-width='2'/></svg>",
+      "options": ["أطفال", "ممر مشاة", "منوع مرور المشاة", "طريق إجباري للمشاة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><circle cx='35' cy='60' r='10' fill='none' stroke='#000' stroke-width='3'/><circle cx='65' cy='60' r='10' fill='none' stroke='#000' stroke-width='3'/><path d='M35 60L50 60L60 45M50 60L45 45L55 45M65 60L55 40L50 40' fill='none' stroke='#000' stroke-width='3'/></svg>",
+      "options": ["ممر لراكبي الدراجات العادية", "معبر إجباري للدراجات العادية", "ممنوع مرور الدراجات العادية", "ممنوع مرور المشاة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><rect x='35' y='45' width='30' height='15' rx='5' fill='#000'/><circle cx='65' cy='40' r='6' fill='#000'/><path d='M40 60L40 75M55 60L55 75' stroke='#000' stroke-width='4'/></svg>",
+      "options": ["ممر حيوانات اليفة", "حيوانات شاردة", "ممنوع مرور الطنابر", "طريق إجباري للخيل"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M30 65Q45 35 60 45Q75 55 80 40L70 65Z' fill='#000'/></svg>",
+      "options": ["حيوانات شاردة", "ممر حيوانات اليفة", "ممنوع مرور الطنابر", "طريق إجباري للخيل"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><circle cx='45' cy='40' r='4' fill='#000'/><path d='M45 45L45 60L35 75M45 60L55 75' stroke='#000' stroke-width='3' fill='none'/><path d='M55 75L75 75L65 50Z' fill='#000'/></svg>",
+      "options": ["أشغال", "ممنوع مرور المشاة", "أطفال", "طريق إجباري للمشاة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><rect x='40' y='35' width='20' height='40' rx='2' fill='#333'/><circle cx='50' cy='43' r='4' fill='#f44336'/><circle cx='50' cy='55' r='4' fill='#ff9800'/><circle cx='50' cy='67' r='4' fill='#4caf50'/></svg>",
+      "options": ["إشارة ضوئية", "ممر مشاة", "اخطار مختلفة", "أشغال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M30 60L70 60M50 40L50 80' stroke='#000' stroke-width='8' transform='rotate(45 50 60)'/></svg>",
+      "options": ["مهبط طائرات", "ريح جانبية قوية", "طريق رئيسية", "محطة وقود"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M30 40L70 40' stroke='#000' stroke-width='6'/><path d='M60 40Q80 60 70 80L50 80' fill='none' stroke='#000' stroke-width='4'/></svg>",
+      "options": ["ريح جانبية قوية", "اتجاه إجباري لليسار", "طريق ضيق من جهة واحدة", "منعطف يساري"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M40 35L40 70M35 45L40 35L45 45' stroke='#000' stroke-width='4' fill='none'/><path d='M60 70L60 35M55 60L60 70L65 60' stroke='#000' stroke-width='4' fill='none'/></svg>",
+      "options": ["منطقة سير مؤقتة باتجاهين", "ممنوع مرور المركبات باتجاهين", "أفضلية المرور للقادمين من الجهة المقابلة", "تقاطع طريق بدون افضلية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M50 35L50 60' stroke='#000' stroke-width='8' stroke-linecap='round'/><circle cx='50' cy='75' r='4' fill='#000'/></svg>",
+      "options": ["أخطار مختلفة", "إشارة ضوئية", "اشغال", "ممر مشاة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M35 45L65 70M35 70L65 45' stroke='#000' stroke-width='8' stroke-linecap='round'/></svg>",
+      "options": ["تقاطع طريق بدون أفضلية", "طريق غير نافذة", "ممنوع مرور المركبات باتجاهين", "مقطع سكة حديدية مخفور"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M50 25L50 80M30 50L70 50' stroke='#000' stroke-width='10'/></svg>",
+      "options": ["تقاطع طريق عريض مع ضيق بدون أفضلية", "طريق ضيق من جهتين", "طريق غير نافذة", "عمود التنبيه إلى تقاطع السكة الحديدية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M50 25L50 80M50 50L70 50' stroke='#000' stroke-width='10'/></svg>",
+      "options": ["تقاطع طريق عريض مع ضيق بدون أفضلية", "ريح جانبية قوية", "طريق ضيق من جهة واحدة", "طريق غير نافذة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M50 25L50 80M50 50L30 50' stroke='#000' stroke-width='10'/></svg>",
+      "options": ["تقاطع طريق عريض مع ضيق بدون أفضلية", "طريق ضيق من جهة واحدة", "ريح جانبية قوية", "طريق غير نافذة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><circle cx='50' cy='55' r='20' fill='none' stroke='#000' stroke-width='6'/><path d='M45 35L55 35L50 25Z' fill='#000'/></svg>",
+      "options": ["اتجاه دائري حسب دلالة السهم", "أخطار مختلفة", "منطقة سير مؤقتة باتجاهين", "ريح جانبية قوية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><rect x='30' y='50' width='40' height='25' fill='#000'/><path d='M30 50L40 30L60 30L70 50Z' fill='#000'/><circle cx='40' cy='75' r='5' fill='#000'/><circle cx='60' cy='75' r='5' fill='#000'/></svg>",
+      "options": ["مقطع سكة حديدية مخفور", "مقطع سكة حديدية غير مخفور", "تقاطع طريق بدون أفضلية", "ممنوع مرور المركبات باتجاه واحد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M35 45L65 45M35 55L65 55M35 65L65 65M35 75L65 75' stroke='#000' stroke-width='4'/><path d='M40 35L40 80M50 35L50 80M60 35L60 80' stroke='#000' stroke-width='4'/></svg>",
+      "options": ["مقطع سكة حديدية غير مخفور", "مقطع سكة حديدية مخفور", "تقاطع طريق بدون أفضلية", "ممنوع مرور السيارات القاطرة والمقطورة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='40' y='10' width='20' height='80' fill='#fff' stroke='#000' stroke-width='2'/><path d='M40 30L60 45M40 50L60 65M40 70L60 85' stroke='#d32f2f' stroke-width='4'/></svg>",
+      "options": ["عمود التنبيه إلى تقاطع السكة الحديدية", "أخطار مختلفة", "ريح جانبية قوية", "إشارة ضوئية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='40' y='10' width='20' height='80' fill='#fff' stroke='#000' stroke-width='2'/><path d='M40 40L60 55M40 60L60 75' stroke='#d32f2f' stroke-width='4'/></svg>",
+      "options": ["عمود التنبيه إلى تقاطع السكة الحديدية", "منطقة سير مؤقتة باتجاهين", "إشارة ضوئية", "ريح جانبية قوية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='40' y='10' width='20' height='80' fill='#fff' stroke='#000' stroke-width='2'/><path d='M40 50L60 65' stroke='#d32f2f' stroke-width='4'/></svg>",
+      "options": ["عمود التنبيه إلى تقاطع السكة الحديدية", "أخطار مختلفة", "إشارة ضوئية", "ريح جانبية قوية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M10 15L90 15L50 85Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/></svg>",
+      "options": ["تمهل طريق فرعي أفضلية المرور للغير", "طريق رئيسية", "طريق ضيق من جهتين", "ممنوع مرور المركبات باتجاهين"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><polygon points='30,10 70,10 90,30 90,70 70,90 30,90 10,70 10,30' fill='#d32f2f'/><text x='50' y='55' fill='#fff' font-family='Arial' font-size='26' font-weight='bold' text-anchor='middle'>قف</text></svg>",
+      "options": ["قفا افسج مجال المرور للغير", "ممنوع مرور المركبات باتجاه واحد", "طريق غير نافذة", "نهاية الطريق الرئيسية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><polygon points='50,10 90,50 50,90 10,50' fill='#ffeb3b' stroke='#fff' stroke-width='4'/><polygon points='50,5 95,50 50,95 5,50' fill='none' stroke='#000' stroke-width='2'/></svg>",
+      "options": ["طريق رئيسية", "ممنوع التوقف والوقوف", "ممنوع مرور المركبات باتجاهين", "إشارة ضوئية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><polygon points='50,10 90,50 50,90 10,50' fill='#ffeb3b' stroke='#fff' stroke-width='4'/><polygon points='50,5 95,50 50,95 5,50' fill='none' stroke='#000' stroke-width='2'/><path d='M20 20L80 80M20 30L80 90M30 20L90 80' stroke='#000' stroke-width='4'/></svg>",
+      "options": ["نهاية الطريق الرئيسية", "انتهاء منطقة المنع", "ممنوع مرور المركبات باتجاهين", "ممنوع الانعطاف بشكل نصف دائري"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='15' y='15' width='70' height='70' rx='5' fill='#1976d2'/><path d='M35 80L35 20M25 35L35 20L45 35' fill='none' stroke='#fff' stroke-width='8'/><path d='M65 20L65 80M55 65L65 80L75 65' fill='none' stroke='#d32f2f' stroke-width='8'/></svg>",
+      "options": ["لك أفضلية المرور عن القادمين من الجهة المقابلة", "طريق ذو اتجاه واحد", "منطقة سير مؤقتة باتجاهين", "أفضلية المرور للقادمين من الجهة المقابلة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M35 80L35 20M25 35L35 20L45 35' fill='none' stroke='#d32f2f' stroke-width='8'/><path d='M65 20L65 80M55 65L65 80L75 65' fill='none' stroke='#000' stroke-width='8'/></svg>",
+      "options": ["أفضلية المرور للقادمين من الجهة المقابلة", "منطقة سير مؤقتة باتجاهين", "طريق ذو اتجاه واحد", "ممنوع مرور المركبات باتجاه واحد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><path d='M50 15L90 85H10Z' fill='#fff' stroke='#d32f2f' stroke-width='8'/><path d='M20 75L80 75M20 65L80 65' stroke='#d32f2f' stroke-width='4'/></svg>",
+      "options": ["تحذير لمقطع سكة الحديد على مستوى واحد", "انتهاء منطقة المنع", "ممنوع الوقوف والتوقف", "ممنوع الوقوف دون التوقف"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#d32f2f'/><rect x='20' y='40' width='60' height='20' fill='#fff'/></svg>",
+      "options": ["ممنوع مرور المركبات باتجاه واحد", "ممنوع مرور المركبات باتجاهين", "ممنوع الوقوف والتوقف", "ممنوع الوقوف دون التوقف"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/></svg>",
+      "options": ["ممنوع مرور المركبات باتجاهين", "ممنوع مرور المركبات باتجاه واحد", "ممنوع الوقوف دون التوقف", "ممنوع الوقوف والتوقف"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M30 65L70 65' stroke='#000' stroke-width='4'/><rect x='35' y='45' width='30' height='15' fill='#000'/><circle cx='40' cy='60' r='5' fill='#000'/><circle cx='60' cy='60' r='5' fill='#000'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["منوع مرور السيارات ماعدا الدراجات النارية بدون سلة", "نهاية منطقة منع التجاوز", "طريق غير نافذة", "ممنوع مرور المركبات باتجاه واحد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><circle cx='40' cy='60' r='6' fill='#000'/><circle cx='60' cy='60' r='6' fill='#000'/><path d='M40 60L50 40L60 60' stroke='#000' stroke-width='4' fill='none'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور الدراجات النارية", "ممنوع مرور الدراجات العادية", "معبر إجباري للدراجات العادية", "ممنوع مرور المشاة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><circle cx='35' cy='60' r='8' fill='none' stroke='#000' stroke-width='2'/><circle cx='65' cy='60' r='8' fill='none' stroke='#000' stroke-width='2'/><path d='M35 60L50 60L60 45M50 60L45 45L55 45M65 60L55 40L50 40' fill='none' stroke='#000' stroke-width='2'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور الدراجات العادية", "ممر الراكبي الدراجات العادية", "معبر إجباري للدراجات العادية", "ممنوع مرور الدراجات النارية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><circle cx='35' cy='60' r='8' fill='none' stroke='#000' stroke-width='2'/><circle cx='65' cy='60' r='8' fill='none' stroke='#000' stroke-width='2'/><path d='M35 60L50 60L60 45M50 60L45 45L55 45' fill='none' stroke='#000' stroke-width='2'/><rect x='45' y='50' width='10' height='10' fill='#000'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور الدراجات ذات المحرك المعاون", "ممنوع مرور الدراجات العادية", "معبر إجباري للدراجات العادية", "ممر الراكبي الدراجات العادية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='30' y='45' width='40' height='20' fill='#000'/><circle cx='40' cy='65' r='5' fill='#000'/><circle cx='60' cy='65' r='5' fill='#000'/><rect x='60' y='50' width='15' height='15' fill='#000'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور السيارات الشاحنة", "ممنوع التجاوز للسيارات الشاحنة", "ممنوع مرور السيارات القاطرة والمقطورة", "ممنوع مرور المركبات باتجاه واحد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='25' y='45' width='25' height='15' fill='#000'/><rect x='55' y='45' width='20' height='15' fill='#000'/><circle cx='35' cy='60' r='4' fill='#000'/><circle cx='45' cy='60' r='4' fill='#000'/><circle cx='65' cy='60' r='4' fill='#000'/><path d='M50 50L55 50' stroke='#000' stroke-width='2'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور السيارات القاطرة والمقطورة", "ممنوع مرور السيارات الشاحنة", "ممنوع مرور الطنابر", "ممنوع مرور عربات اليد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><circle cx='50' cy='35' r='5' fill='#000'/><path d='M50 40L50 60L40 75M50 60L60 75M40 45L60 45' fill='none' stroke='#000' stroke-width='4'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور المشاة", "ممر مشاة", "طريق إجباري للمشاة", "أطفال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='50' y='50' width='20' height='10' fill='#000'/><circle cx='60' cy='60' r='4' fill='#000'/><path d='M40 40L50 55M40 50L45 65' stroke='#000' stroke-width='3'/><circle cx='40' cy='35' r='4' fill='#000'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور عربات اليد", "ممنوع مرور الطنابر", "ممنوع مرور المشاة", "ممنوع مرور المركبات الزراعية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='35' y='50' width='20' height='10' fill='#000'/><circle cx='40' cy='60' r='4' fill='#000'/><circle cx='50' cy='60' r='4' fill='#000'/><path d='M65 45L55 55L65 65' stroke='#000' stroke-width='3' fill='none'/><circle cx='65' cy='45' r='3' fill='#000'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور الطنابر", "ممنوع مرور عربات اليد", "ممنوع مرور الدراجات ذات المحرك المعاون", "ممنوع مرور السيارات القاطرة والمقطورة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M35 55A10 10 0 0 1 65 55L65 65L35 65Z' fill='#000'/><circle cx='40' cy='65' r='5' fill='#000'/><circle cx='60' cy='65' r='5' fill='#000'/><circle cx='50' cy='45' r='4' fill='#000'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور المركبات الزراعية", "ممنوع مرور الطنابر", "ممنوع مرور السيارات القاطرة والمقطورة", "أشغال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M25 60L75 60M25 65L75 65' stroke='#000' stroke-width='3'/><path d='M35 55L45 55L50 40L65 40L70 55L80 55L80 70L35 70Z' fill='#000'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع مرور المركبات ذات المحرك", "ممنوع مرور المركبات باتجاه واحد", "طريق غير نافذة", "ممنوع مرور المركبات باتجاهين"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><text x='50' y='60' font-family='Arial' font-size='30' font-weight='bold' text-anchor='middle'>2m</text><polygon points='15,50 25,45 25,55' fill='#000'/><polygon points='85,50 75,45 75,55' fill='#000'/></svg>",
+      "options": ["ممنوع مرور المركبات التي يزيد عرضها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد ارتفاعها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد طولها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد وزنها مع الحمولة عن الرقم المدون"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><text x='50' y='60' font-family='Arial' font-size='30' font-weight='bold' text-anchor='middle'>3.5m</text><polygon points='50,15 45,25 55,25' fill='#000'/><polygon points='50,85 45,75 55,75' fill='#000'/></svg>",
+      "options": ["ممنوع مرور المركبات التي يزيد ارتفاعها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد طولها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد عرضها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد وزنها مع الحمولة عن الرقم المدون"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><text x='50' y='60' font-family='Arial' font-size='35' font-weight='bold' text-anchor='middle'>5.5 t</text></svg>",
+      "options": ["ممنوع مرور المركبات التي يزيد وزنها مع الحمولة عن الرقم المدون", "ممنوع مرور المركبات التي يزيد طولها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد عرضها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد ارتفاعها عن الرقم المدون"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><text x='50' y='45' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle'>2.4 t</text><path d='M30 65L70 65M35 55L35 75M65 55L65 75' stroke='#000' stroke-width='4'/><circle cx='50' cy='65' r='4' fill='#000'/><path d='M50 48L50 58' stroke='#000' stroke-width='4'/><polygon points='50,62 47,58 53,58' fill='#000'/></svg>",
+      "options": ["ممنوع مرور المركبات التي تزن على المحور الواحد أكثر من الرقم المدون", "ممنوع مرور المركبات التي يزيد ارتفاعها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد عرضها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد وزنها مع الحمولة عن الرقم المدون"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='25' y='40' width='50' height='20' fill='#000'/><text x='50' y='75' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle'>10 m</text><polygon points='25,70 30,67 30,73' fill='#000'/><polygon points='75,70 70,67 70,73' fill='#000'/></svg>",
+      "options": ["ممنوع مرور المركبات التي يزيد طولها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد ارتفاعها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد عرضها عن الرقم المدون", "ممنوع مرور المركبات التي تزن على المحور الواحد أكثر من الرقم المدون"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M25 50L35 50L35 60L20 60Z' fill='#000'/><path d='M75 50L65 50L65 60L80 60Z' fill='#000'/><circle cx='25' cy='60' r='3' fill='#000'/><circle cx='30' cy='60' r='3' fill='#000'/><circle cx='70' cy='60' r='3' fill='#000'/><circle cx='75' cy='60' r='3' fill='#000'/><text x='50' y='45' font-family='Arial' font-size='20' font-weight='bold' text-anchor='middle'>70 m</text></svg>",
+      "options": ["ممنوع مرور المركبات دون الاحتفاظ بمسافة الأمان المدونة", "ممنوع مرور المركبات التي يزيد طولها عن الرقم المدون", "ممنوع مرور المركبات التي يزيد عرضها عن الرقم المدون", "ممنوع التجاوز للسيارات السياحية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M40 70L40 40Q40 25 55 25L70 25' fill='none' stroke='#000' stroke-width='6'/><polygon points='25,40 35,30 35,50' fill='#000' transform='rotate(90 70 25)'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع الانعطاف نحو اليسار", "منعطف يساري", "اتجاه إجباري لليسار", "ممنوع الانعطاف بشكل نصف دائري"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M60 70L60 40Q60 25 45 25L30 25' fill='none' stroke='#000' stroke-width='6'/><polygon points='75,40 65,30 65,50' fill='#000' transform='rotate(-90 30 25)'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع الانعطاف نحو اليمين", "منعطف يميني", "اتجاه إجباري لليمين", "ممنوع الانعطاف بشكل نصف دائري"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M40 70L40 40Q40 25 55 25Q70 25 70 40L70 70M60 60L70 70L80 60' fill='none' stroke='#000' stroke-width='6'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع الانعطاف بشكل نصف دائري", "ممنوع مرور المركبات باتجاهين", "منطقة سير مؤقتة باتجاهين", "نهاية الطريق الرئيسية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='30' y='40' width='15' height='25' rx='3' fill='#d32f2f'/><rect x='55' y='40' width='15' height='25' rx='3' fill='#000'/></svg>",
+      "options": ["ممنوع التجاوز للسيارات السياحية", "أفضلية المرور للقادمين من الجهة المقابلة", "منطقة سير مؤقتة باتجاهين", "نهاية منطقة منع التجاوز"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='25' y='45' width='20' height='15' fill='#d32f2f'/><circle cx='30' cy='60' r='4' fill='#d32f2f'/><circle cx='40' cy='60' r='4' fill='#d32f2f'/><rect x='55' y='45' width='15' height='15' rx='3' fill='#000'/></svg>",
+      "options": ["ممنوع التجاوز للسيارات الشاحنة", "أفضلية المرور للقادمين من الجهة المقابلة", "ممنوع مرور السيارات الشاحنة", "نهاية منطقة منع التجاوز"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><text x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle'>50</text></svg>",
+      "options": ["حدود السرعة القصوى", "حدود السرعة الدنيا", "نهاية تحديد السرعة القصوى", "ممنوع مرور المركبات التي يزيد وزنها مع الحمولة عن الرقم المدون"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><path d='M30 50L70 50' stroke='#000' stroke-width='6'/><path d='M70 50L60 40M70 50L60 60' stroke='#000' stroke-width='4' fill='none'/><line x1='25' y1='25' x2='75' y2='75' stroke='#d32f2f' stroke-width='6'/></svg>",
+      "options": ["ممنوع التزمير", "أخطار مختلفة", "انتهاء منطقة المنع", "مكان اتظار محدد المدة والزمن"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#d32f2f' stroke-width='10'/><rect x='30' y='45' width='40' height='10' rx='5' fill='#000'/><text x='50' y='35' font-family='Arial' font-size='12' font-weight='bold' text-anchor='middle'>DOUANE</text><text x='50' y='75' font-family='Arial' font-size='12' font-weight='bold' text-anchor='middle'>ZOLL</text></svg>",
+      "options": ["جمارك - شرطة ممنوع المرور دون توقف", "مكان اتظار محدد المدة والزمن", "ممنوع الوقوف والتوقف", "ممنوع مرور المركبات باتجاه واحد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#000' stroke-width='2'/><path d='M30 80L80 30M25 75L75 25M20 70L70 20M35 85L85 35M40 90L90 40' stroke='#000' stroke-width='2'/></svg>",
+      "options": ["انتهاء منطقة المنع", "ممنوع الوقوف دون التوقف", "ممنوع مرور المركبات باتجاه واحد", "ممنوع مرور المركبات باتجاهين"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#000' stroke-width='2'/><text x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='#ccc'>40</text><path d='M30 80L80 30M25 75L75 25M20 70L70 20M35 85L85 35M40 90L90 40' stroke='#000' stroke-width='2'/></svg>",
+      "options": ["نهاية تحديد السرعة القصوى", "حدود السرعة القصوى", "حدود السرعة الدنيا", "انتهاء مكان الموقف المعلن أو المحدد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#fff' stroke='#000' stroke-width='2'/><rect x='30' y='40' width='15' height='25' rx='3' fill='#ccc'/><rect x='55' y='40' width='15' height='25' rx='3' fill='#ccc'/><path d='M30 80L80 30M25 75L75 25M20 70L70 20M35 85L85 35M40 90L90 40' stroke='#000' stroke-width='2'/></svg>",
+      "options": ["نهاية منطقة منع التجاوز", "ممنوع التجاوز للسيارات السياحية", "أفضلية المرور للقادمين من الجهة المقابلة", "منطقة سير مؤقتة باتجاهين"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#1976d2' stroke='#d32f2f' stroke-width='10'/><line x1='20' y1='20' x2='80' y2='80' stroke='#d32f2f' stroke-width='10'/></svg>",
+      "options": ["ممنوع الوقوف دون التوقف", "ممنوع الوقوف والتوقف", "ممنوع مرور المركبات باتجاه واحد", "مكان انتظار محدد المدة والزمن"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#1976d2' stroke='#d32f2f' stroke-width='10'/><line x1='20' y1='20' x2='80' y2='80' stroke='#d32f2f' stroke-width='10'/><line x1='80' y1='20' x2='20' y2='80' stroke='#d32f2f' stroke-width='10'/></svg>",
+      "options": ["ممنوع الوقوف والتوقف", "ممنوع الوقوف دون التوقف", "طريق غير نافذة", "ممنوع مرور المركبات باتجاهين"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#1976d2' stroke='#d32f2f' stroke-width='10'/><rect x='30' y='30' width='40' height='40' fill='#fff'/></svg>",
+      "options": ["مكان انتظار محدد المدة والزمن", "انتهاء مكان الموقف المعلن أو المحدد", "انتهاء منطقة المنع", "طريق غير نافذة"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' fill='#fff' stroke='#000' stroke-width='2'/><circle cx='50' cy='50' r='30' fill='#1976d2' stroke='#000' stroke-width='2'/><line x1='30' y1='30' x2='70' y2='70' stroke='#000' stroke-width='2'/><path d='M20 80L80 20' stroke='#000' stroke-width='10'/></svg>",
+      "options": ["انتهاء مكان الموقف المعلن أو المحدد", "طريق غير نافذة", "مكان انتظار محدد المدة والزمن", "ممنوع المرور باتجاه واحد"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#1976d2' stroke='#d32f2f' stroke-width='10'/><rect x='45' y='30' width='10' height='40' fill='#fff'/><line x1='20' y1='20' x2='80' y2='80' stroke='#d32f2f' stroke-width='10'/></svg>",
+      "options": ["موقف مقنن في التواريخ الفردية", "ممنوع الوقوف دون التوقف", "ممنوع مرور المركبات باتجاه واحد", "انتهاء منطقة المنع"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='#1976d2' stroke='#d32f2f' stroke-width='10'/><rect x='40' y='30' width='8' height='40' fill='#fff'/><rect x='52' y='30' width='8' height='40' fill='#fff'/><line x1='20' y1='20' x2='80' y2='80' stroke='#d32f2f' stroke-width='10'/></svg>",
+      "options": ["موقف مقنن في التواريخ الزوجية", "ممنوع الوقوف والتوقف", "ممنوع مرور المركبات باتجاهين", "انتهاء منطقة المنع"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><path d='M50 80L50 20M35 35L50 20L65 35' stroke='#fff' stroke-width='8' fill='none' stroke-linecap='round'/></svg>",
+      "options": ["اتجاه إجباري للأمام", "طريق رئيسية", "بداية الاوتوستراد", "قف افسح مجال المرور للغير"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><path d='M30 50L70 50M55 35L70 50L55 65' stroke='#fff' stroke-width='8' fill='none' stroke-linecap='round'/></svg>",
+      "options": ["اتجاه اجباري لليمين", "منعطف يميني", "ممنوع الانعطاف نحو اليمين", "ريح جانبية قوية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><path d='M50 80L50 40M50 40L50 20M35 35L50 20L65 35M50 40L80 40M65 25L80 40L65 55' stroke='#fff' stroke-width='8' fill='none' stroke-linecap='round'/></svg>",
+      "options": ["اتجاه إجباري مزدوج للامام - لليمين", "منعطف مزدوج الأول يميني", "تقاطع طريق بدون افضلية", "منطقة سير مؤقتة باتجاهين"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><path d='M80 30L50 60L20 30M40 20L20 30L30 50' stroke='#fff' stroke-width='8' fill='none' stroke-linecap='round'/></svg>",
+      "options": ["اتجاه إجباري بدلالة السهم", "ممنوع الانعطاف بشكل نصف دائري", "طريق غير نافذة", "ريح جانبية قوية"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><path d='M50 20A30 30 0 0 1 76 35M70 25L76 35L86 29' fill='none' stroke='#fff' stroke-width='6'/><path d='M76 65A30 30 0 0 1 24 65M30 75L24 65L14 71' fill='none' stroke='#fff' stroke-width='6'/><path d='M24 35A30 30 0 0 1 50 20M14 29L24 35L30 25' fill='none' stroke='#fff' stroke-width='6'/></svg>",
+      "options": ["اتجاه إجباري دائري", "بداية الاوتوستراد", "منطقة ثلوج ملزم بوضع سلاسل للعجلات", "موقف"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><circle cx='35' cy='60' r='10' fill='none' stroke='#fff' stroke-width='3'/><circle cx='65' cy='60' r='10' fill='none' stroke='#fff' stroke-width='3'/><path d='M35 60L50 60L60 45M50 60L45 45L55 45' fill='none' stroke='#fff' stroke-width='3'/></svg>",
+      "options": ["معبر إجباري للدراجات العادية", "ممر الراكبي الدراجات العادية", "ممنوع مرور الدراجات العادية", "ممنوع مرور الدراجات ذات المحرك المعاون"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><circle cx='50' cy='30' r='6' fill='#fff'/><path d='M50 40L50 60L40 75M50 60L60 75M40 45L60 45' fill='none' stroke='#fff' stroke-width='5'/></svg>",
+      "options": ["طريق إجباري للمشاة", "ممر مشاة", "ممنوع مرور المشاة", "أطفال"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><path d='M30 65Q45 35 60 45Q75 55 80 40L70 65Z' fill='#fff'/></svg>",
+      "options": ["طريق إجباري للخيل", "ممنوع مرور الطنابر", "ممر حيوانات أليفة", "حقل قوافل"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><text x='50' y='65' font-family='Arial' font-size='45' font-weight='bold' text-anchor='middle' fill='#fff'>30</text></svg>",
+      "options": ["حدود السرعة الدنيا", "حدود السرعة القصوى", "نهاية تحديد السرعة الدنيا", "نهاية تحديد السرعة القصوى"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='#1976d2'/><text x='50' y='65' font-family='Arial' font-size='45' font-weight='bold' text-anchor='middle' fill='#fff'>30</text><path d='M20 80L80 20' stroke='#d32f2f' stroke-width='8'/></svg>",
+      "options": ["نهاية تحديد السرعة الدنيا", "نهاية تحديد السرعة القصوى", "حدود السرعة الدنيا", "حدود السرعة القصوى"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='5' fill='#1976d2'/><path d='M50 80L50 20M35 40L50 20L65 40' fill='none' stroke='#fff' stroke-width='8'/></svg>",
+      "options": ["طريق ذو اتجاه واحد", "بداية الاوتوستراد", "طريق رئيسية", "موقف"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='5' fill='#1976d2'/><text x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='#fff'>H</text></svg>",
+      "options": ["مشفى", "مقهى", "موقف", "مركز هاتف"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='5' fill='#1976d2'/><text x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='#fff'>P</text></svg>",
+      "options": ["موقف", "مركز هاتف", "مركز الإصلاح المركبات", "مشفى"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='5' fill='#1976d2'/><path d='M40 30L60 30M50 30L50 70' stroke='#fff' stroke-width='8'/><circle cx='50' cy='30' r='5' fill='#fff'/></svg>",
+      "options": ["طريق غير نافذة", "موقف", "تقاطع طريق بدون أفضلية", "وجهة السير"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='80' rx='5' fill='#1976d2'/><path d='M30 70L70 70M50 70L50 30M40 40L50 30L60 40' fill='none' stroke='#fff' stroke-width='8'/><path d='M20 80L80 20' stroke='#d32f2f' stroke-width='8'/></svg>",
+      "options": ["نهاية طريق السيارات", "ممنوع مرور المركبات باتجاه واحد", "ممنوع التجاوز للسيارات السياحية", "ممنوع مرور المركبات ذات المحرك"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='40' fill='#1976d2'/><text x='50' y='35' font-family='Arial' font-size='20' font-weight='bold' fill='#fff' text-anchor='middle'>دمشق</text></svg>",
+      "options": ["لوحة بداية حدود المدينة", "بداية طريق السيارات", "اتجاه إجباري بدلالة السهم", "شاخصة الدلالة على المدن"]
+    },
+    {
+      "question": "ماذا تعني هذه الإشارة؟",
+      "svg": "<svg viewBox='0 0 100 100'><rect x='10' y='10' width='80' height='40' fill='#1976d2'/><text x='50' y='35' font-family='Arial' font-size='20' font-weight='bold' fill='#fff' text-anchor='middle'>دمشق</text><line x1='15' y1='45' x2='85' y2='15' stroke='#d32f2f' stroke-width='4'/></svg>",
+      "options": ["لوحة نهاية حدود المدينة", "لوحة بداية حدود المدينة", "انتهاء مكان الموقف المعلن أو المحدد", "نهاية الاتوستراد"]
+    }
+  ]
+}
