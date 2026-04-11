@@ -9,173 +9,234 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Cairo', sans-serif; }
+        body { font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .main-content { flex: 1; }
         .option-btn { transition: all 0.2s; }
         .option-btn:hover:not(.selected) { border-color: #93c5fd; background-color: #f8fafc; }
         .selected { border-color: #2563eb; background-color: #eff6ff; color: #1e40af; }
         .selected .radio-circle { border-color: #2563eb; }
         .selected .radio-dot { display: block; }
         .radio-dot { display: none; }
+        
+        /* تأثيرات الفوتر */
+        .social-link { transition: all 0.3s ease; }
+        .social-link:hover { transform: translateY(-3px); }
+        .linkedin:hover { color: #0077b5; }
+        .github:hover { color: #333; }
+        .twitter:hover { color: #0f1419; } /* X Color */
+        .instagram:hover { color: #e1306c; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-20">
+<body class="bg-slate-50 text-slate-800">
 
-    <!-- شاشة الترحيب -->
-    <div id="welcome-screen" class="flex-1 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 text-center border border-slate-100">
-            <div class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
-                <i class="fa-solid fa-car-side"></i>
-            </div>
-            <h1 class="text-3xl font-bold text-slate-900 mb-4">الاختبار النظري للقيادة</h1>
-            <p class="text-slate-600 mb-6 leading-relaxed">
-                محاكي الفحص النظري السوري. يتكون من 30 سؤالاً مقسمة حسب المعايير الرسمية وتتضمن أسئلة مصورة للشاخصات.
-            </p>
-            
-            <div class="bg-slate-50 rounded-xl p-5 mb-8 text-right border border-slate-100">
-                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2 border-b border-slate-200 pb-2">
-                    <i class="fa-solid fa-file-text text-blue-500"></i>
-                    توزيع الأسئلة والعلامات:
-                </h3>
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-book-open text-indigo-500"></i> قواعد السير (40%)</div>
-                        <span class="font-bold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">12 سؤال</span>
-                    </div>
-                    <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-orange-500"></i> الشاخصات المرورية (30%)</div>
-                        <span class="font-bold bg-orange-50 text-orange-700 px-2 py-0.5 rounded">9 أسئلة</span>
-                    </div>
-                    <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-gear text-slate-500"></i> ميكانيك المركبة (30%)</div>
-                        <span class="font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded">9 أسئلة</span>
-                    </div>
+    <!-- الهيدر (Header) -->
+    <header class="bg-white border-b border-slate-200 shadow-sm py-4 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white w-10 h-10 rounded-lg flex items-center justify-center text-xl shadow-md">
+                    <i class="fa-solid fa-car-on"></i>
                 </div>
-                <div class="mt-4 flex justify-between items-center text-sm font-semibold text-slate-500 px-2">
-                    <span class="text-blue-600"><i class="fa-solid fa-clock"></i> 15 دقيقة</span>
-                    <span class="text-green-600"><i class="fa-solid fa-check-double"></i> نسبة النجاح: 60%</span>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-slate-800">محاكي الفحص النظري</h1>
+                    <p class="text-xs text-slate-500 font-semibold">سوريا - المنهاج الحديث</p>
                 </div>
             </div>
-
-            <button onclick="startTest()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-lg shadow-lg shadow-blue-200">
-                <i class="fa-solid fa-play-circle text-2xl"></i>
-                بدء الاختبار
-            </button>
+            <!-- تم إزالة الاسم من هنا بناءً على طلبك -->
         </div>
-    </div>
+    </header>
 
-    <!-- شاشة الاختبار -->
-    <div id="test-screen" class="hidden flex-1 flex flex-col">
-        <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-10">
-            <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <span id="question-counter" class="text-sm font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full"></span>
-                    <span id="category-badge" class="hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md"></span>
+    <div class="main-content flex flex-col pb-10">
+        <!-- شاشة الترحيب -->
+        <div id="welcome-screen" class="flex-1 flex items-center justify-center p-4 mt-8">
+            <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 text-center border border-slate-100 relative overflow-hidden">
+                <!-- تأثيرات خلفية -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10"></div>
+                <div class="absolute bottom-0 left-0 w-24 h-24 bg-slate-50 rounded-tr-full -z-10"></div>
+                
+                <div class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner">
+                    <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <div id="timer-display" class="flex items-center gap-2 font-mono text-xl font-bold px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 transition-colors duration-300">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">استعد لاختبار القيادة!</h2>
+                <p class="text-slate-600 mb-6 leading-relaxed">
+                    محاكي تدريبي مطابق للفحص النظري السوري. 30 سؤالاً مؤتمتاً ومصوراً تسحب عشوائياً من المنهاج الرسمي.
+                </p>
+                
+                <div class="bg-slate-50 rounded-xl p-5 mb-8 text-right border border-slate-100 shadow-sm">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2 border-b border-slate-200 pb-2">
+                        <i class="fa-solid fa-chart-pie text-blue-500"></i>
+                        توزيع الأسئلة:
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-book-open text-indigo-500"></i> قواعد السير (40%)</div>
+                            <span class="font-bold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">12 سؤال</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-orange-500"></i> الشاخصات المرورية (30%)</div>
+                            <span class="font-bold bg-orange-50 text-orange-700 px-2 py-0.5 rounded">9 أسئلة</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-gear text-slate-500"></i> ميكانيك المركبة (30%)</div>
+                            <span class="font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded">9 أسئلة</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center text-sm font-semibold text-slate-500 px-2 bg-white py-2 rounded-lg border border-slate-100">
+                        <span class="text-blue-600 flex items-center gap-1"><i class="fa-solid fa-clock"></i> 15 دقيقة</span>
+                        <span class="text-green-600 flex items-center gap-1"><i class="fa-solid fa-check-double"></i> النجاح: 60%</span>
+                    </div>
+                </div>
+
+                <button onclick="startTest()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-lg shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-1">
+                    <i class="fa-solid fa-play-circle text-2xl"></i>
+                    بدء الاختبار الآن
+                </button>
+            </div>
+        </div>
+
+        <!-- شاشة الاختبار -->
+        <div id="test-screen" class="hidden flex-1 flex flex-col pt-4">
+            <div class="max-w-4xl mx-auto px-4 w-full flex justify-between items-center mb-4">
+                <div class="flex items-center gap-3">
+                    <span id="question-counter" class="text-sm font-semibold text-slate-500 bg-white border border-slate-200 shadow-sm px-3 py-1 rounded-full"></span>
+                    <span id="category-badge" class="hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm"></span>
+                </div>
+                <div id="timer-display" class="flex items-center gap-2 font-mono text-xl font-bold px-4 py-1.5 rounded-full bg-white shadow-sm border border-blue-100 text-blue-700 transition-colors duration-300">
                     <i class="fa-solid fa-clock"></i>
                     <span id="time-text">15:00</span>
                 </div>
             </div>
-        </header>
 
-        <main class="flex-1 max-w-4xl mx-auto w-full p-4 flex flex-col justify-center">
-            <div class="w-full bg-slate-200 h-1.5 rounded-full mb-8 overflow-hidden">
-                <div id="progress-bar" class="bg-blue-600 h-full transition-all duration-300" style="width: 0%"></div>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
-                <!-- حاوية الصورة إن وجدت -->
-                <div id="question-image-container" class="mb-6 w-full flex justify-center hidden"></div>
-                
-                <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 leading-snug text-center"></h2>
-                <div id="options-container" class="space-y-3">
-                    <!-- الخيارات -->
+            <main class="flex-1 max-w-4xl mx-auto w-full p-4 flex flex-col justify-start">
+                <div class="w-full bg-slate-200 h-2 rounded-full mb-8 overflow-hidden shadow-inner">
+                    <div id="progress-bar" class="bg-blue-600 h-full transition-all duration-300" style="width: 0%"></div>
                 </div>
-            </div>
 
-            <div class="flex justify-between items-center mt-auto">
-                <button id="prev-btn" onclick="prevQuestion()" class="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">
-                    <i class="fa-solid fa-arrow-right"></i> السابق
-                </button>
-                <button id="next-btn" onclick="nextQuestion()" class="flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all bg-slate-200 text-slate-400 cursor-not-allowed">
-                    التالي <i class="fa-solid fa-arrow-left"></i>
-                </button>
-            </div>
-        </main>
-    </div>
-
-    <!-- شاشة النتائج -->
-    <div id="results-screen" class="hidden flex-1 p-4 pt-8">
-        <div class="max-w-3xl mx-auto">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-8 text-center border border-slate-100 relative">
-                <div id="result-bar" class="h-3 w-full bg-green-500"></div>
-                <div class="p-6 md:p-10">
-                    <div id="result-icon-container" class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-6 bg-green-100 text-green-600 text-4xl">
-                        <i id="result-icon" class="fa-solid fa-check-circle"></i>
-                    </div>
-                    <h1 id="result-title" class="text-3xl font-bold mb-2"></h1>
-                    <p id="result-message" class="text-slate-500 mb-8"></p>
+                <div class="bg-white rounded-3xl shadow-md border border-slate-200 p-6 md:p-10 mb-6">
+                    <!-- حاوية الصورة إن وجدت -->
+                    <div id="question-image-container" class="mb-8 w-full flex justify-center hidden"></div>
                     
-                    <div class="flex justify-center gap-12 mb-10">
-                        <div class="text-center">
-                            <p class="text-sm text-slate-500 mb-1">الدرجة النهائية</p>
-                            <p class="text-4xl font-bold text-slate-900"><span id="score-text">0</span><span class="text-xl text-slate-400">/30</span></p>
-                        </div>
-                        <div class="w-px bg-slate-200"></div>
-                        <div class="text-center">
-                            <p class="text-sm text-slate-500 mb-1">النسبة المئوية</p>
-                            <p id="percentage-text" class="text-4xl font-bold text-green-600">0%</p>
-                        </div>
+                    <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 leading-snug text-center"></h2>
+                    <div id="options-container" class="space-y-3">
+                        <!-- الخيارات -->
                     </div>
+                </div>
 
-                    <div class="bg-slate-50 rounded-2xl p-6 mb-8 text-right">
-                        <h3 class="font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">تفصيل العلامة حسب الأقسام:</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between">
-                                <div>
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <i class="fa-solid fa-book-open text-indigo-500"></i>
-                                        <span class="font-semibold text-sm">القواعد (40%)</span>
-                                    </div>
-                                    <div class="text-2xl font-bold text-indigo-700"><span id="rules-score">0</span><span class="text-sm text-slate-400">/12</span></div>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between">
-                                <div>
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <i class="fa-solid fa-triangle-exclamation text-orange-500"></i>
-                                        <span class="font-semibold text-sm">الشاخصات (30%)</span>
-                                    </div>
-                                    <div class="text-2xl font-bold text-orange-700"><span id="signs-score">0</span><span class="text-sm text-slate-400">/9</span></div>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between">
-                                <div>
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <i class="fa-solid fa-gear text-slate-500"></i>
-                                        <span class="font-semibold text-sm">الميكانيك (30%)</span>
-                                    </div>
-                                    <div class="text-2xl font-bold text-slate-700"><span id="mechanics-score">0</span><span class="text-sm text-slate-400">/9</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="startTest()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2 mx-auto w-full md:w-auto">
-                        <i class="fa-solid fa-rotate-right"></i> إختبار جديد بأسئلة عشوائية
+                <div class="flex justify-between items-center mt-4">
+                    <button id="prev-btn" onclick="prevQuestion()" class="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm">
+                        <i class="fa-solid fa-arrow-right"></i> السابق
+                    </button>
+                    <button id="next-btn" onclick="nextQuestion()" class="flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all bg-slate-200 text-slate-400 cursor-not-allowed">
+                        التالي <i class="fa-solid fa-arrow-left"></i>
                     </button>
                 </div>
-            </div>
+            </main>
+        </div>
 
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 px-2">مراجعة الإجابات</h2>
-            <div id="review-container" class="space-y-4"></div>
+        <!-- شاشة النتائج -->
+        <div id="results-screen" class="hidden flex-1 p-4 pt-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-8 text-center border border-slate-100 relative">
+                    <div id="result-bar" class="h-3 w-full bg-green-500"></div>
+                    <div class="p-6 md:p-10">
+                        <div id="result-icon-container" class="mx-auto w-24 h-24 rounded-full flex items-center justify-center mb-6 bg-green-100 text-green-600 text-5xl shadow-inner">
+                            <i id="result-icon" class="fa-solid fa-check-circle"></i>
+                        </div>
+                        <h2 id="result-title" class="text-3xl font-bold mb-2 text-slate-900"></h2>
+                        <p id="result-message" class="text-slate-500 mb-8 text-lg"></p>
+                        
+                        <div class="flex justify-center gap-8 md:gap-16 mb-10 bg-slate-50 py-6 rounded-2xl border border-slate-100">
+                            <div class="text-center">
+                                <p class="text-sm text-slate-500 mb-1 font-semibold">الإجابات الصحيحة</p>
+                                <p class="text-5xl font-bold text-slate-900"><span id="score-text">0</span><span class="text-2xl text-slate-400">/30</span></p>
+                            </div>
+                            <div class="w-px bg-slate-300"></div>
+                            <div class="text-center">
+                                <p class="text-sm text-slate-500 mb-1 font-semibold">النسبة المئوية</p>
+                                <p id="percentage-text" class="text-5xl font-bold text-green-600">0%</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl mb-8 text-right border border-slate-100">
+                            <h3 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3 px-6 pt-4 bg-slate-50 rounded-t-2xl">
+                                تفصيل العلامة حسب الأقسام:
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-6">
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <i class="fa-solid fa-book-open text-indigo-500"></i>
+                                            <span class="font-semibold text-sm">القواعد</span>
+                                        </div>
+                                        <div class="text-2xl font-bold text-indigo-700"><span id="rules-score">0</span><span class="text-sm text-slate-400">/12</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <i class="fa-solid fa-triangle-exclamation text-orange-500"></i>
+                                            <span class="font-semibold text-sm">الشاخصات</span>
+                                        </div>
+                                        <div class="text-2xl font-bold text-orange-700"><span id="signs-score">0</span><span class="text-sm text-slate-400">/9</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <i class="fa-solid fa-gear text-slate-500"></i>
+                                            <span class="font-semibold text-sm">الميكانيك</span>
+                                        </div>
+                                        <div class="text-2xl font-bold text-slate-700"><span id="mechanics-score">0</span><span class="text-sm text-slate-400">/9</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="startTest()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2 mx-auto w-full md:w-auto shadow-lg hover:shadow-xl">
+                            <i class="fa-solid fa-rotate-right"></i> إختبار جديد بأسئلة عشوائية
+                        </button>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-900 mb-6 px-2 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-blue-500"></i> مراجعة الإجابات:
+                </h3>
+                <div id="review-container" class="space-y-4"></div>
+            </div>
         </div>
     </div>
 
+    <!-- الفوتر (Footer) -->
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-right">
+                <p class="font-bold text-slate-800 text-lg mb-1">تطوير: معاذ الصبوح</p>
+                <p class="text-sm text-slate-500">جميع الحقوق محفوظة &copy; <span id="current-year"></span></p>
+            </div>
+            
+            <div class="flex items-center gap-5 text-2xl text-slate-400">
+                <a href="https://www.linkedin.com/in/moazalsabouh" target="_blank" rel="noopener noreferrer" class="social-link linkedin" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/MoazAlsabouh" target="_blank" rel="noopener noreferrer" class="social-link github" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://x.com/moazAlsabouh" target="_blank" rel="noopener noreferrer" class="social-link twitter" title="X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://instagram.com/moazns" target="_blank" rel="noopener noreferrer" class="social-link instagram" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <!-- كود الجافاسكربت -->
     <script>
+        // ضبط السنة تلقائياً في الفوتر
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
         // بنك الأسئلة المدمج مع الصور (SVG)
         const QUESTION_BANK = [
             // --- قواعد السير ---
@@ -238,12 +299,11 @@
         }
 
         function startTest() {
-            // سحب الأسئلة
+            // سحب الأسئلة (12 قواعد، 9 شاخصات، 9 ميكانيك)
             const rules = QUESTION_BANK.filter(q => q.category === 'rules');
             const signs = QUESTION_BANK.filter(q => q.category === 'signs');
             const mechs = QUESTION_BANK.filter(q => q.category === 'mechanics');
 
-            // 12 قواعد، 9 شاخصات، 9 ميكانيك
             const selectedRules = shuffle(rules).slice(0, 12);
             const selectedSigns = shuffle(signs).slice(0, 9);
             const selectedMechs = shuffle(mechs).slice(0, 9);
@@ -267,23 +327,33 @@
             
             clearInterval(timerId);
             timerId = setInterval(updateTimer, 1000);
+            window.scrollTo(0, 0);
         }
 
         function renderQuestion() {
             const q = currentQuestions[currentIndex];
             const isAnswered = answers[q.id] !== undefined;
 
-            document.getElementById('question-counter').innerText = `السؤال ${currentIndex + 1} من 30`;
+            document.getElementById('question-counter').innerHTML = `<i class="fa-solid fa-list-ul ml-1 text-blue-500"></i> السؤال ${currentIndex + 1} من 30`;
             document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / 30) * 100}%`;
 
             const badge = document.getElementById('category-badge');
-            badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md ' + 
-                (q.category === 'rules' ? 'bg-indigo-50 text-indigo-600' : 
-                 q.category === 'signs' ? 'bg-orange-50 text-orange-600' : 
-                 'bg-slate-100 text-slate-600');
-            badge.innerText = q.category === 'rules' ? 'قواعد سير' : q.category === 'signs' ? 'شاخصات' : 'ميكانيك';
+            let catIcon = '';
+            if(q.category === 'rules') {
+                badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm bg-indigo-50 text-indigo-600 border border-indigo-100';
+                catIcon = '<i class="fa-solid fa-book-open ml-1"></i>';
+                badge.innerHTML = catIcon + ' قواعد سير';
+            } else if(q.category === 'signs') {
+                badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm bg-orange-50 text-orange-600 border border-orange-100';
+                catIcon = '<i class="fa-solid fa-triangle-exclamation ml-1"></i>';
+                badge.innerHTML = catIcon + ' شاخصات';
+            } else {
+                badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm bg-slate-100 text-slate-600 border border-slate-200';
+                catIcon = '<i class="fa-solid fa-gear ml-1"></i>';
+                badge.innerHTML = catIcon + ' ميكانيك';
+            }
 
-            // عرض الصورة إذا كانت متوفرة
+            // عرض الصورة
             const imgContainer = document.getElementById('question-image-container');
             if(q.imageSvg) {
                 imgContainer.innerHTML = q.imageSvg;
@@ -300,11 +370,11 @@
             q.shuffledOptions.forEach(opt => {
                 const isSelected = answers[q.id] === opt;
                 const btn = document.createElement('button');
-                btn.className = `option-btn w-full text-right p-4 rounded-xl border-2 text-lg md:text-xl flex items-center gap-3 cursor-pointer ${isSelected ? 'selected' : 'border-slate-200 text-slate-700'}`;
+                btn.className = `option-btn w-full text-right p-4 rounded-xl border-2 text-lg md:text-xl flex items-center gap-3 cursor-pointer ${isSelected ? 'selected font-bold shadow-md' : 'border-slate-200 text-slate-700 bg-slate-50'}`;
                 btn.onclick = () => selectOption(q.id, opt);
 
                 btn.innerHTML = `
-                    <div class="radio-circle w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? '' : 'border-slate-300'}">
+                    <div class="radio-circle w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? '' : 'border-slate-300 bg-white'}">
                         <div class="radio-dot w-3 h-3 bg-blue-600 rounded-full"></div>
                     </div>
                     ${opt}
@@ -324,14 +394,14 @@
             }
 
             if (currentIndex === currentQuestions.length - 1) {
-                nextBtn.innerHTML = `إنهاء الاختبار <i class="fa-solid fa-check-circle"></i>`;
+                nextBtn.innerHTML = `إنهاء الاختبار <i class="fa-solid fa-flag-checkered"></i>`;
                 nextBtn.className = "flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white " + 
-                    (isAnswered ? "bg-green-600 hover:bg-green-700 shadow-green-200 cursor-pointer" : "bg-slate-300 cursor-not-allowed");
+                    (isAnswered ? "bg-green-600 hover:bg-green-700 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer" : "bg-slate-300 cursor-not-allowed");
                 nextBtn.onclick = isAnswered ? submitTest : null;
             } else {
                 nextBtn.innerHTML = `التالي <i class="fa-solid fa-arrow-left"></i>`;
-                nextBtn.className = "flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg " + 
-                    (isAnswered ? "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200 cursor-pointer" : "bg-slate-200 text-slate-400 cursor-not-allowed");
+                nextBtn.className = "flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-md " + 
+                    (isAnswered ? "bg-blue-600 hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 text-white cursor-pointer" : "bg-slate-200 text-slate-400 cursor-not-allowed");
                 nextBtn.onclick = isAnswered ? nextQuestion : null;
             }
         }
@@ -355,7 +425,10 @@
             }
         }
 
+        // دالة تحديث الوقت - وتقوم بإنهاء الامتحان تلقائياً عند انتهاء الوقت
         function updateTimer() {
+            if (timeLeft <= 0) return; // منع النزول تحت الصفر
+            
             timeLeft--;
             const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
             const s = (timeLeft % 60).toString().padStart(2, '0');
@@ -363,13 +436,14 @@
 
             const timerDiv = document.getElementById('timer-display');
             if (timeLeft < 60) {
-                timerDiv.classList.remove('bg-blue-50', 'text-blue-700');
-                timerDiv.classList.add('bg-red-100', 'text-red-600', 'animate-pulse');
+                timerDiv.classList.remove('bg-white', 'text-blue-700', 'border-blue-100');
+                timerDiv.classList.add('bg-red-50', 'text-red-600', 'border-red-200', 'animate-pulse');
             } else {
-                timerDiv.classList.add('bg-blue-50', 'text-blue-700');
-                timerDiv.classList.remove('bg-red-100', 'text-red-600', 'animate-pulse');
+                timerDiv.classList.add('bg-white', 'text-blue-700', 'border-blue-100');
+                timerDiv.classList.remove('bg-red-50', 'text-red-600', 'border-red-200', 'animate-pulse');
             }
 
+            // في حال انتهاء الوقت، أوقف المؤقت وأظهر النتيجة مباشرة
             if (timeLeft <= 0) {
                 clearInterval(timerId);
                 submitTest();
@@ -395,25 +469,23 @@
                 }
             });
 
-            // تحديث نسبة النجاح لتصبح 60% (18 سؤال من أصل 30)
-            const isPassed = scores.total >= 18;
+            const isPassed = scores.total >= 18; // 60%
             const pct = Math.round((scores.total / 30) * 100);
 
             document.getElementById('result-bar').className = `h-3 w-full ${isPassed ? 'bg-green-500' : 'bg-red-500'}`;
-            document.getElementById('result-icon-container').className = `mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-6 text-4xl ${isPassed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`;
+            document.getElementById('result-icon-container').className = `mx-auto w-24 h-24 rounded-full flex items-center justify-center mb-6 text-5xl shadow-inner ${isPassed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`;
             document.getElementById('result-icon').className = `fa-solid ${isPassed ? 'fa-check-circle' : 'fa-circle-exclamation'}`;
-            document.getElementById('result-title').innerText = isPassed ? 'مبروك! لقد نجحت' : 'للأسف، لم تنجح هذه المرة';
+            document.getElementById('result-title').innerText = isPassed ? 'مبروك! لقد نجحت 🎉' : 'للأسف، لم تنجح هذه المرة';
             document.getElementById('result-message').innerText = isPassed ? 'أنت مستعد لاجتياز الفحص النظري بنجاح.' : 'تحتاج إلى المزيد من التدريب ومراجعة الأقسام الضعيفة (النجاح يتطلب 60%).';
             
             document.getElementById('score-text').innerText = scores.total;
             document.getElementById('percentage-text').innerText = `${pct}%`;
-            document.getElementById('percentage-text').className = `text-4xl font-bold ${isPassed ? 'text-green-600' : 'text-red-600'}`;
+            document.getElementById('percentage-text').className = `text-5xl font-bold ${isPassed ? 'text-green-600' : 'text-red-600'}`;
 
             document.getElementById('rules-score').innerText = scores.rules.correct;
             document.getElementById('signs-score').innerText = scores.signs.correct;
             document.getElementById('mechanics-score').innerText = scores.mechanics.correct;
 
-            // توليد المراجعة التفصيلية
             const reviewContainer = document.getElementById('review-container');
             reviewContainer.innerHTML = '';
 
@@ -424,17 +496,17 @@
                 const catLabel = q.category === 'rules' ? 'قواعد سير' : q.category === 'signs' ? 'شاخصات' : 'ميكانيك';
                 const catColor = q.category === 'rules' ? 'bg-indigo-500' : q.category === 'signs' ? 'bg-orange-500' : 'bg-slate-500';
 
-                let imgHtml = q.imageSvg ? `<div class="mt-4 mb-2 flex justify-center">${q.imageSvg}</div>` : '';
+                let imgHtml = q.imageSvg ? `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl">${q.imageSvg}</div>` : '';
 
                 let html = `
-                    <div class="bg-white rounded-2xl p-6 border-2 ${isCorrect ? 'border-green-100' : 'border-red-100'} shadow-sm relative overflow-hidden">
-                        <div class="absolute top-0 right-0 px-3 py-1 rounded-bl-lg text-xs font-bold text-white ${catColor}">${catLabel}</div>
+                    <div class="bg-white rounded-2xl p-6 border-2 ${isCorrect ? 'border-green-100' : 'border-red-100'} shadow-sm relative overflow-hidden transition-all hover:shadow-md">
+                        <div class="absolute top-0 right-0 px-3 py-1 rounded-bl-lg text-xs font-bold text-white shadow-sm ${catColor}">${catLabel}</div>
                         
                         <div class="flex gap-4 items-start mb-2 mt-4">
-                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isCorrect ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center shadow-inner ${isCorrect ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
                                 <i class="fa-solid ${isCorrect ? 'fa-check' : 'fa-times'}"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-slate-900 pt-1 leading-snug w-full text-center">${idx + 1}. ${q.text}</h3>
+                            <h3 class="text-lg font-bold text-slate-800 pt-1 leading-snug w-full">${idx + 1}. ${q.text}</h3>
                         </div>
                         
                         ${imgHtml}
@@ -444,21 +516,21 @@
 
                 if (!isCorrect && userAns) {
                     html += `
-                        <div class="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg">
+                        <div class="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg border border-red-100">
                             <i class="fa-solid fa-times-circle"></i> <span class="font-medium">إجابتك: ${userAns}</span>
                         </div>
                     `;
                 }
                 if (!userAns) {
                     html += `
-                        <div class="flex items-center gap-2 text-slate-500 bg-slate-100 p-3 rounded-lg">
-                            <i class="fa-solid fa-circle-exclamation"></i> <span class="font-medium">لم يتم الإجابة على هذا السؤال.</span>
+                        <div class="flex items-center gap-2 text-slate-600 bg-slate-100 p-3 rounded-lg border border-slate-200">
+                            <i class="fa-solid fa-circle-exclamation"></i> <span class="font-medium">لم يتم الإجابة على هذا السؤال (انتهى الوقت أو تم التخطي).</span>
                         </div>
                     `;
                 }
 
                 html += `
-                            <div class="flex items-center gap-2 text-green-700 bg-green-50 p-3 rounded-lg">
+                            <div class="flex items-center gap-2 text-green-700 bg-green-50 p-3 rounded-lg border border-green-100">
                                 <i class="fa-solid fa-check-circle"></i> <span class="font-medium">الإجابة الصحيحة: ${q.correctAnswer}</span>
                             </div>
                         </div>
