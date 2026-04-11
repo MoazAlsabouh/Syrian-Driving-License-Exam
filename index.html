@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاختبار النظري الشامل - سوريا</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .option-btn { transition: all 0.2s; }
+        .option-btn:hover:not(.selected) { border-color: #93c5fd; background-color: #f8fafc; }
+        .selected { border-color: #2563eb; background-color: #eff6ff; color: #1e40af; }
+        .selected .radio-circle { border-color: #2563eb; }
+        .selected .radio-dot { display: block; }
+        .radio-dot { display: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-20">
+
+    <div id="welcome-screen" class="flex-1 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 text-center border border-slate-100">
+            <div class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+                <i class="fa-solid fa-map"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-slate-900 mb-4">الاختبار النظري الشامل</h1>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+                محاكي الفحص النظري المحدث (سوريا). يتكون الاختبار من 30 سؤالاً مقسمة حسب المعايير الرسمية بنسبة 100%.
+            </p>
+            
+            <div class="bg-slate-50 rounded-xl p-5 mb-8 text-right border border-slate-100">
+                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2 border-b border-slate-200 pb-2">
+                    <i class="fa-solid fa-file-text text-blue-500"></i>
+                    توزيع الأسئلة والعلامات:
+                </h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-book-open text-indigo-500"></i> قواعد السير (40%)</div>
+                        <span class="font-bold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">12 سؤال</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-orange-500"></i> الشاخصات المرورية (30%)</div>
+                        <span class="font-bold bg-orange-50 text-orange-700 px-2 py-0.5 rounded">9 أسئلة</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-white p-2 px-3 rounded-lg border border-slate-100">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-gear text-slate-500"></i> ميكانيك المركبة (30%)</div>
+                        <span class="font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded">9 أسئلة</span>
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-between items-center text-sm font-semibold text-slate-500 px-2">
+                    <span>الوقت المتاح: 15 دقيقة</span>
+                    <span>نسبة النجاح: 80%</span>
+                </div>
+            </div>
+
+            <button onclick="startTest()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-lg shadow-lg shadow-blue-200">
+                <i class="fa-solid fa-play-circle text-2xl"></i>
+                بدء الاختبار
+            </button>
+        </div>
+    </div>
+
+    <div id="test-screen" class="hidden flex-1 flex flex-col">
+        <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-10">
+            <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <span id="question-counter" class="text-sm font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full"></span>
+                    <span id="category-badge" class="hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md"></span>
+                </div>
+                <div id="timer-display" class="flex items-center gap-2 font-mono text-xl font-bold px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 transition-colors duration-300">
+                    <i class="fa-solid fa-clock"></i>
+                    <span id="time-text">15:00</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 max-w-4xl mx-auto w-full p-4 flex flex-col justify-center">
+            <div class="w-full bg-slate-200 h-1.5 rounded-full mb-8 overflow-hidden">
+                <div id="progress-bar" class="bg-blue-600 h-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
+                <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 leading-snug"></h2>
+                <div id="options-container" class="space-y-3">
+                    </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-auto">
+                <button id="prev-btn" onclick="prevQuestion()" class="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">
+                    <i class="fa-solid fa-arrow-right"></i> السابق
+                </button>
+                <button id="next-btn" onclick="nextQuestion()" class="flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all bg-slate-200 text-slate-400 cursor-not-allowed">
+                    التالي <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <div id="results-screen" class="hidden flex-1 p-4 pt-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-8 text-center border border-slate-100 relative">
+                <div id="result-bar" class="h-3 w-full bg-green-500"></div>
+                <div class="p-6 md:p-10">
+                    <div id="result-icon-container" class="mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-6 bg-green-100 text-green-600 text-4xl">
+                        <i id="result-icon" class="fa-solid fa-check-circle"></i>
+                    </div>
+                    <h1 id="result-title" class="text-3xl font-bold mb-2"></h1>
+                    <p id="result-message" class="text-slate-500 mb-8"></p>
+                    
+                    <div class="flex justify-center gap-12 mb-10">
+                        <div class="text-center">
+                            <p class="text-sm text-slate-500 mb-1">الدرجة النهائية</p>
+                            <p class="text-4xl font-bold text-slate-900"><span id="score-text">0</span><span class="text-xl text-slate-400">/30</span></p>
+                        </div>
+                        <div class="w-px bg-slate-200"></div>
+                        <div class="text-center">
+                            <p class="text-sm text-slate-500 mb-1">النسبة المئوية</p>
+                            <p id="percentage-text" class="text-4xl font-bold text-green-600">0%</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-6 mb-8 text-right">
+                        <h3 class="font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">تفصيل العلامة حسب الأقسام:</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <i class="fa-solid fa-book-open text-indigo-500"></i>
+                                        <span class="font-semibold text-sm">القواعد (40%)</span>
+                                    </div>
+                                    <div class="text-2xl font-bold text-indigo-700"><span id="rules-score">0</span><span class="text-sm text-slate-400">/12</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <i class="fa-solid fa-triangle-exclamation text-orange-500"></i>
+                                        <span class="font-semibold text-sm">الشاخصات (30%)</span>
+                                    </div>
+                                    <div class="text-2xl font-bold text-orange-700"><span id="signs-score">0</span><span class="text-sm text-slate-400">/9</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <i class="fa-solid fa-gear text-slate-500"></i>
+                                        <span class="font-semibold text-sm">الميكانيك (30%)</span>
+                                    </div>
+                                    <div class="text-2xl font-bold text-slate-700"><span id="mechanics-score">0</span><span class="text-sm text-slate-400">/9</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="startTest()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2 mx-auto w-full md:w-auto">
+                        <i class="fa-solid fa-rotate-right"></i> إعادة الاختبار عشوائياً
+                    </button>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 px-2">مراجعة الإجابات</h2>
+            <div id="review-container" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <script>
+        // بنك الأسئلة
+        const QUESTION_BANK = [
+            // قواعد (rules)
+            { id: 1, category: 'rules', text: "عند دخولك في نفق أثناء القيادة نهاراً عليك:", options: ["إضاءة المصابيح وتخفيف السرعة", "إضاءة المصابيح وزيادة السرعة", "استعمال الزمور", "الاستمرار بالسير بطريقة طبيعية"], correctAnswer: "إضاءة المصابيح وتخفيف السرعة" },
+            { id: 2, category: 'rules', text: "يمنع استعمال الزمور:", options: ["بوجود اشارة ممنوع التزمير", "داخل المدينة فقط", "خارج المدينة فقط", "منعاً باتاً"], correctAnswer: "بوجود اشارة ممنوع التزمير" },
+            { id: 3, category: 'rules', text: "إن المركبات غير المسرعة والتي تسير على طريق من ثلاثة مسارب عليها السير في:", options: ["المسرب الأيمن", "المسرب الأيسر", "المسرب الأوسط", "أي مسرب كان"], correctAnswer: "المسرب الأيمن" },
+            { id: 4, category: 'rules', text: "البقعة العمياء بالنسبة لسائق المركبة هي:", options: ["منطقة خارج نطاق مرايا المركبة", "منطقة ضمن نطاق مرايا المركبة", "منطقة غير مضاءة ليلا", "منطقة كثيفة الضباب"], correctAnswer: "منطقة خارج نطاق مرايا المركبة" },
+            { id: 5, category: 'rules', text: "إذا أراد السائق أن ينعطف بمركبته إلى جهة اليمين عليه قبل الانعطاف أن ينظر في:", options: ["كل المرايا وخاصة في المرأة اليمنى", "المرأة اليمني فقط", "المرأة الداخلية فقط", "المرأة اليسرى فقط"], correctAnswer: "كل المرايا وخاصة في المرأة اليمنى" },
+            { id: 6, category: 'rules', text: "في حال انزلقت مركبتك عليك كسائق أن تكون ردة فعلك الأولى:", options: ["لا تضغط على الفرامل وتوجه المركبة الى الجهة التي تنزلق بها مؤخرتها", "تضغط على الفرامل وتوجه المركبة بعكس اتجاه انزلاق مؤخرتها", "تشد فرامل اليد وتوجه المركبة الى الجهة التي تنزلق بها مؤخرتها", "تزيد السرعة وتوجه المركبة بعكس اتجاه انزلاق مؤخرتها"], correctAnswer: "لا تضغط على الفرامل وتوجه المركبة الى الجهة التي تنزلق بها مؤخرتها" },
+            { id: 7, category: 'rules', text: "عندما يريد السائق أن يستمر بالتقدم بشكل مستقيم عبر التقاطع عليه أن:", options: ["لا يعطي اية إشارة", "يعطي إشارة إلى اليمين", "يعطي إشارة إلى اليسار", "يستعمل الإضاءة التحذيرية"], correctAnswer: "لا يعطي اية إشارة" },
+            { id: 8, category: 'rules', text: "عند تقاطع الطرق يجب على سائق المركبة:", options: ["تخفيف السرعة", "استعمال الزمور", "إنارة الضوء العالي", "استعمال اضواء التحذير"], correctAnswer: "تخفيف السرعة" },
+            { id: 9, category: 'rules', text: "في حال ظهور مركبة من الجهة المعاكسة اثناء استعمالك للإضاءة العالية ليلاً عليك:", options: ["تخفيض الضوء فوراً", "تقطيع الضوء بتبديله بين العالي والمنخفض", "إطفاء الانوار بشكل كامل", "تخفيض السرعة فورا"], correctAnswer: "تخفيض الضوء فوراً" },
+            { id: 10, category: 'rules', text: "يسمح بإيقاف المركبة على طريق ذو مسلكين متعاكسين:", options: ["على يمين اتجاه سير المركبة بشكل يوازي الرصيف", "على يمين اتجاه سير المركبة بشكل عرضي", "على الرصيف", "في أي جهة طالما أنها لا تعيق حركة السير"], correctAnswer: "على يمين اتجاه سير المركبة بشكل يوازي الرصيف" },
+            { id: 11, category: 'rules', text: "عندما يسمع السائق صفارة إنذار مركبة الطوارئ أثناء القيادة عليه أن:", options: ["يتنحى جانبا أو يتوقف", "يسير امامها ويستعمل الزمور ليفتح لها الطريق", "يزيد سرعته كي لا يعرقل السير", "يسير خلفها مباشرة كسبا للوقت"], correctAnswer: "يتنحى جانبا أو يتوقف" },
+            { id: 12, category: 'rules', text: "إن وضع حزام الأمان:", options: ["ضروري لجميع ركاب السيارة", "ضروري للسائق فقط", "ضروري للركاب في المقعد الامامي فقط", "غير ضروري داخل المدينة"], correctAnswer: "ضروري لجميع ركاب السيارة" },
+            { id: 13, category: 'rules', text: "إن ترك مسافة أمان بين مركبتك والمركبة التي تسير أمامك يمكنك من:", options: ["تفادي اصطدامك بها في حال توقفت فجاة", "تجاوز هذه المركبة بسهولة", "رؤية الإشارات الصادرة عن هذه المركبة بشكل افضل", "السماح لهذه المركبة برؤية مركبتك بشكل افضل"], correctAnswer: "تفادي اصطدامك بها في حال توقفت فجاة" },
+            { id: 14, category: 'rules', text: "عند تقاطع خال من الإشارات ومن شرطي المرور تكون أفضلية المرور للسائق الذي:", options: ["يكون يمينه مفتوحاً", "يكون يساره مفتوحاً", "يصل أولا", "يكون يمينه مغلقاً"], correctAnswer: "يكون يمينه مفتوحاً" },
+            { id: 15, category: 'rules', text: "أثناء القيادة في الضباب يجب على السائق:", options: ["تخفيف السرعة واخذ الحيطة والحذر", "السير بسرعة كبيرة لتجاوز منطقة الضباب", "السير وسط الطريق واستعمال الزمور بشكل متواصل", "إطفاء جميع انوار المركبة"], correctAnswer: "تخفيف السرعة واخذ الحيطة والحذر" },
+            { id: 16, category: 'rules', text: "حفاظاً على سلامة الأطفال في المركبة يتم وضعهم:", options: ["في المقعد الخلفي مع ربط حزام الأمان", "في المقعد الأمامي مع ربط حزام الأمان", "في المقعد الخلفي بدون ربط حزام الأمان", "يتم حملهم بين الذراعين"], correctAnswer: "في المقعد الخلفي مع ربط حزام الأمان" },
+            { id: 17, category: 'rules', text: "ما الخطر الناجم عن بدء هطول الأمطار بعد فترة جفاف طويلة ؟", options: ["تتكون طبقة زلقة خطيرة فوق سطح الطرق", "تتكون برك مائية تؤدي إلى اتساخ المركبة", "يتكون الضباب ويعيق الرؤية", "تتكون الصواعق وتشكل خطر على سير المركبة"], correctAnswer: "تتكون طبقة زلقة خطيرة فوق سطح الطرق" },
+            { id: 18, category: 'rules', text: "إذا كان لديك مسافة أمان بينك وبين المركبة التي أمامك ودخلت مركبة أخرى بينكما فيجب أن:", options: ["تنشىء مسافة أمان جديدة خلفها", "تتجاوز هذه المركبة من جديد", "تستعمل الزمور وتضيء الأنوار", "لا تقوم بأي إجراء"], correctAnswer: "تنشىء مسافة أمان جديدة خلفها" },
+
+            // شاخصات (signs)
+            { id: 19, category: 'signs', text: "إن إشارات المرور ذات الشكل المثلث ذو الحواف الحمراء هي إشارات:", options: ["تحذيرية", "إرشادية", "مانعة", "إلزامية"], correctAnswer: "تحذيرية" },
+            { id: 20, category: 'signs', text: "إن إشارات المرور ذات الشكل الدائري ذات الحواف الحمراء هي إشارات:", options: ["مانعة", "تحذيرية", "إرشادية", "إلزامية"], correctAnswer: "مانعة" },
+            { id: 21, category: 'signs', text: "إن إشارة «قف» هي الإشارة المرورية الثابتة الوحيدة ذات شكل هندسي:", options: ["ثماني الأضلاع", "مستطيل", "مربع", "دائري"], correctAnswer: "ثماني الأضلاع" },
+            { id: 22, category: 'signs', text: "إن إشارات المرور ذات الشكل الدائري باللون الأزرق هي إشارات:", options: ["إلزامية (إجبارية)", "تحذيرية", "مانعة", "مؤقتة"], correctAnswer: "إلزامية (إجبارية)" },
+            { id: 23, category: 'signs', text: "الشاخصة التي تكون على شكل مثلث مقلوب (رأسه للأسفل) وحوافه حمراء تعني:", options: ["أعط أفضلية المرور (ليس لك حق الأولوية)", "طريق ذو اتجاهين", "ممنوع التجاوز", "نهاية الطريق المزدوج"], correctAnswer: "أعط أفضلية المرور (ليس لك حق الأولوية)" },
+            { id: 24, category: 'signs', text: "الشاخصة الدائرية الزرقاء التي تحتوي على سهم أبيض يتجه لليمين تعني:", options: ["اتجاه إجباري لليمين", "ممنوع الانعطاف لليمين", "طريق باتجاه واحد", "موقف سيارات بالجهة اليمنى"], correctAnswer: "اتجاه إجباري لليمين" },
+            { id: 25, category: 'signs', text: "الشاخصة الدائرية الحمراء التي بداخلها رقم (80) تعني:", options: ["السرعة القصوى المسموحة هي 80 كم/سا", "أدنى سرعة مسموحة هي 80 كم/سا", "المسافة المتبقية للمدينة 80 كم", "وزن المركبة المسموح 80 طن"], correctAnswer: "السرعة القصوى المسموحة هي 80 كم/سا" },
+            { id: 26, category: 'signs', text: "شاخصة دائرية زرقاء محاطة بإطار أحمر وبداخلها خطين متقاطعين (X) باللون الأحمر تعني:", options: ["ممنوع الوقوف والتوقف", "ممنوع الدخول", "ممنوع التجاوز", "موقف مأجور"], correctAnswer: "ممنوع الوقوف والتوقف" },
+            { id: 27, category: 'signs', text: "الشاخصة المربعة الزرقاء التي بداخلها حرف (P) باللون الأبيض تعني:", options: ["موقف سيارات", "محطة وقود", "مركز شرطة", "نهاية الطريق السريع"], correctAnswer: "موقف سيارات" },
+            { id: 28, category: 'signs', text: "شاخصة ذات شكل معيّن (مربع مائل) لونها أصفر بحواف بيضاء تعني:", options: ["طريق ذو أفضلية مرور", "نهاية طريق أفضلية المرور", "منطقة أعمال وحفريات", "تقاطع خطر"], correctAnswer: "طريق ذو أفضلية مرور" },
+            { id: 29, category: 'signs', text: "الشاخصة الدائرية الحمراء التي بداخلها سيارتين متجاورتين (واحدة حمراء والأخرى سوداء) تعني:", options: ["ممنوع التجاوز للسيارات", "طريق ذو اتجاهين", "موقف سيارات مزدوج", "طريق زلق"], correctAnswer: "ممنوع التجاوز للسيارات" },
+            { id: 30, category: 'signs', text: "الشاخصة الدائرية الحمراء التي بداخلها خط أبيض أفقي (عرضي) تعني:", options: ["ممنوع الدخول (طريق باتجاه واحد معاكس)", "ممنوع التوقف", "قف", "نهاية السرعة القصوى"], correctAnswer: "ممنوع الدخول (طريق باتجاه واحد معاكس)" },
+
+            // ميكانيك (mechanics)
+            { id: 31, category: 'mechanics', text: "وظيفة صمام الحرارة (الترموستات) هي:", options: ["تنظيم درجة حرارة المحرك", "تنظيم شحن المدخرة (البطارية) بالكهرباء", "قياس درجة حرارة المحرك", "توزيع الكهرباء على شمعات الاحتراق (البواجي)"], correctAnswer: "تنظيم درجة حرارة المحرك" },
+            { id: 32, category: 'mechanics', text: "وظيفة الفاصل الواصل (الدبرياج) هي:", options: ["فصل ووصل الحركة بين المحرك وعلبة السرعة (البواط)", "فصل ووصل الحركة بين علبة السرعة وعمود نقل الحركة", "تغيير سرعة المحرك", "تغيير سرعة السيارة"], correctAnswer: "فصل ووصل الحركة بين المحرك وعلبة السرعة (البواط)" },
+            { id: 33, category: 'mechanics', text: "وظيفة المقلع (المرش) هي:", options: ["إقلاع المحرك", "شحن المدخرة (البطارية) بالكهرباء", "توزيع الكهرباء على شمعات الاحتراق (البواجي)", "إعطاء الشرارة لخليط الهواء والبنزين"], correctAnswer: "إقلاع المحرك" },
+            { id: 34, category: 'mechanics', text: "وظيفة المولد (الدينامو) هي:", options: ["شحن المدخرة (البطارية) بالكهرباء", "رفع جهد المدخرة (البطارية)", "إعطاء الشرارة لخليط الهواء والبنزين", "إقلاع المحرك"], correctAnswer: "شحن المدخرة (البطارية) بالكهرباء" },
+            { id: 35, category: 'mechanics', text: "وظيفة شمعات الاحتراق (البواجي) هي:", options: ["إعطاء الشرارة لخليط الهواء والبنزين", "شحن المدخرة (البطارية) بالكهرباء", "رفع جهد المدخرة (البطارية)", "تزويد ملف الإشعال (البوبين) بالكهرباء"], correctAnswer: "إعطاء الشرارة لخليط الهواء والبنزين" },
+            { id: 36, category: 'mechanics', text: "وظيفة المبرد (الرديتير) هي:", options: ["خفض حرارة ماء تبريد المحرك", "خفض حرارة هواء المكيف", "خفض حرارة ماء المساحات", "ضخ ماء التبريد إلى المحرك"], correctAnswer: "خفض حرارة ماء تبريد المحرك" },
+            { id: 37, category: 'mechanics', text: "وظيفة مضخة البنزين هي:", options: ["ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)", "ضخ البنزين من المفحم (الكربرتير) إلى المحرك", "خلط البنزين مع الهواء", "تصفية البنزين"], correctAnswer: "ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)" },
+            { id: 38, category: 'mechanics', text: "يجب تبديل إطارات المركبة إذا قل عمق نقوش الإطارات عن:", options: ["1.6 ملم", "2.4 ملم", "4 ملم", "5 ملم"], correctAnswer: "1.6 ملم" },
+            { id: 39, category: 'mechanics', text: "وظيفة علبة السرعة (البواط) هي:", options: ["تغيير سرعة وعزم المركبة وتأمين الحركة للخلف", "نقل الحركة من المقود للإطارات", "تزويد المحرك بالوقود", "إيقاف المركبة بشكل تام"], correctAnswer: "تغيير سرعة وعزم المركبة وتأمين الحركة للخلف" },
+            { id: 40, category: 'mechanics', text: "ما هي الوظيفة الأساسية لزيت المحرك؟", options: ["تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك", "زيادة سرعة الاحتراق في المحرك", "تبريد مياه الرديتير", "منع تجمد الوقود في الشتاء"], correctAnswer: "تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك" },
+            { id: 41, category: 'mechanics', text: "إن لون ضوء الرجوع إلى الخلف في المركبات هو:", options: ["أبيض", "أحمر", "برتقالي", "أصفر"], correctAnswer: "أبيض" },
+            { id: 42, category: 'mechanics', text: "إن لون ضوء الفرامل (المكابح) في المركبات هو:", options: ["أحمر", "أبيض", "برتقالي", "أصفر"], correctAnswer: "أحمر" },
+            { id: 43, category: 'mechanics', text: "يؤدي انخفاض ضغط الهواء في عجلات المركبة عن الحد المسموح إلى:", options: ["زيادة معدل استهلاك الوقود وتآكل حواف الإطار", "نقص معدل استهلاك الوقود", "إطالة عمر الإطارات", "زيادة سرعة المركبة بشكل ملحوظ"], correctAnswer: "زيادة معدل استهلاك الوقود وتآكل حواف الإطار" }
+        ];
+
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let answers = {};
+        let timeLeft = 15 * 60;
+        let timerId = null;
+
+        function shuffle(array) {
+            let newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function startTest() {
+            // سحب الأسئلة
+            const rules = QUESTION_BANK.filter(q => q.category === 'rules');
+            const signs = QUESTION_BANK.filter(q => q.category === 'signs');
+            const mechs = QUESTION_BANK.filter(q => q.category === 'mechanics');
+
+            const selectedRules = shuffle(rules).slice(0, 12);
+            const selectedSigns = shuffle(signs).slice(0, 9);
+            const selectedMechs = shuffle(mechs).slice(0, 9);
+
+            const combined = shuffle([...selectedRules, ...selectedSigns, ...selectedMechs]);
+            
+            currentQuestions = combined.map(q => ({
+                ...q,
+                shuffledOptions: shuffle(q.options)
+            }));
+
+            currentIndex = 0;
+            answers = {};
+            timeLeft = 15 * 60;
+
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('results-screen').classList.add('hidden');
+            document.getElementById('test-screen').classList.remove('hidden');
+
+            renderQuestion();
+            
+            clearInterval(timerId);
+            timerId = setInterval(updateTimer, 1000);
+        }
+
+        function renderQuestion() {
+            const q = currentQuestions[currentIndex];
+            const isAnswered = answers[q.id] !== undefined;
+
+            // تحديث الواجهة العلوية
+            document.getElementById('question-counter').innerText = `السؤال ${currentIndex + 1} من 30`;
+            document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / 30) * 100}%`;
+
+            // إعداد تصنيف السؤال
+            const badge = document.getElementById('category-badge');
+            badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md ' + 
+                (q.category === 'rules' ? 'bg-indigo-50 text-indigo-600' : 
+                 q.category === 'signs' ? 'bg-orange-50 text-orange-600' : 
+                 'bg-slate-100 text-slate-600');
+            badge.innerText = q.category === 'rules' ? 'قواعد سير' : q.category === 'signs' ? 'شاخصات' : 'ميكانيك';
+
+            // عرض السؤال والخيارات
+            document.getElementById('question-text').innerText = q.text;
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.shuffledOptions.forEach(opt => {
+                const isSelected = answers[q.id] === opt;
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full text-right p-4 rounded-xl border-2 text-lg md:text-xl flex items-center gap-3 cursor-pointer ${isSelected ? 'selected' : 'border-slate-200 text-slate-700'}`;
+                btn.onclick = () => selectOption(q.id, opt);
+
+                btn.innerHTML = `
+                    <div class="radio-circle w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? '' : 'border-slate-300'}">
+                        <div class="radio-dot w-3 h-3 bg-blue-600 rounded-full"></div>
+                    </div>
+                    ${opt}
+                `;
+                optionsContainer.appendChild(btn);
+            });
+
+            // أزرار التنقل
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (currentIndex === 0) {
+                prevBtn.style.opacity = '0';
+                prevBtn.style.visibility = 'hidden';
+            } else {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.visibility = 'visible';
+            }
+
+            if (currentIndex === currentQuestions.length - 1) {
+                nextBtn.innerHTML = `إنهاء الاختبار <i class="fa-solid fa-check-circle"></i>`;
+                nextBtn.className = "flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white " + 
+                    (isAnswered ? "bg-green-600 hover:bg-green-700 shadow-green-200 cursor-pointer" : "bg-slate-300 cursor-not-allowed");
+                nextBtn.onclick = isAnswered ? submitTest : null;
+            } else {
+                nextBtn.innerHTML = `التالي <i class="fa-solid fa-arrow-left"></i>`;
+                nextBtn.className = "flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg " + 
+                    (isAnswered ? "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200 cursor-pointer" : "bg-slate-200 text-slate-400 cursor-not-allowed");
+                nextBtn.onclick = isAnswered ? nextQuestion : null;
+            }
+        }
+
+        function selectOption(qId, option) {
+            answers[qId] = option;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function updateTimer() {
+            timeLeft--;
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById('time-text').innerText = `${m}:${s}`;
+
+            const timerDiv = document.getElementById('timer-display');
+            if (timeLeft < 60) {
+                timerDiv.classList.remove('bg-blue-50', 'text-blue-700');
+                timerDiv.classList.add('bg-red-100', 'text-red-600', 'animate-pulse');
+            } else {
+                timerDiv.classList.add('bg-blue-50', 'text-blue-700');
+                timerDiv.classList.remove('bg-red-100', 'text-red-600', 'animate-pulse');
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(timerId);
+                submitTest();
+            }
+        }
+
+        function submitTest() {
+            clearInterval(timerId);
+            document.getElementById('test-screen').classList.add('hidden');
+            document.getElementById('results-screen').classList.remove('hidden');
+
+            let scores = {
+                rules: { total: 12, correct: 0 },
+                signs: { total: 9, correct: 0 },
+                mechanics: { total: 9, correct: 0 },
+                total: 0
+            };
+
+            currentQuestions.forEach(q => {
+                if (answers[q.id] === q.correctAnswer) {
+                    scores[q.category].correct++;
+                    scores.total++;
+                }
+            });
+
+            const isPassed = scores.total >= 24;
+            const pct = Math.round((scores.total / 30) * 100);
+
+            // تحديث العناوين والألوان
+            document.getElementById('result-bar').className = `h-3 w-full ${isPassed ? 'bg-green-500' : 'bg-red-500'}`;
+            document.getElementById('result-icon-container').className = `mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-6 text-4xl ${isPassed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`;
+            document.getElementById('result-icon').className = `fa-solid ${isPassed ? 'fa-check-circle' : 'fa-circle-exclamation'}`;
+            document.getElementById('result-title').innerText = isPassed ? 'مبروك! لقد نجحت' : 'للأسف، لم تنجح هذه المرة';
+            document.getElementById('result-message').innerText = isPassed ? 'أنت مستعد لاجتياز الفحص النظري بنجاح.' : 'تحتاج إلى المزيد من التدريب ومراجعة الأقسام الضعيفة.';
+            
+            document.getElementById('score-text').innerText = scores.total;
+            document.getElementById('percentage-text').innerText = `${pct}%`;
+            document.getElementById('percentage-text').className = `text-4xl font-bold ${isPassed ? 'text-green-600' : 'text-red-600'}`;
+
+            document.getElementById('rules-score').innerText = scores.rules.correct;
+            document.getElementById('signs-score').innerText = scores.signs.correct;
+            document.getElementById('mechanics-score').innerText = scores.mechanics.correct;
+
+            // توليد المراجعة التفصيلية
+            const reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
+
+            currentQuestions.forEach((q, idx) => {
+                const userAns = answers[q.id];
+                const isCorrect = userAns === q.correctAnswer;
+                
+                const catLabel = q.category === 'rules' ? 'قواعد سير' : q.category === 'signs' ? 'شاخصات' : 'ميكانيك';
+                const catColor = q.category === 'rules' ? 'bg-indigo-500' : q.category === 'signs' ? 'bg-orange-500' : 'bg-slate-500';
+
+                let html = `
+                    <div class="bg-white rounded-2xl p-6 border-2 ${isCorrect ? 'border-green-100' : 'border-red-100'} shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 right-0 px-3 py-1 rounded-bl-lg text-xs font-bold text-white ${catColor}">${catLabel}</div>
+                        
+                        <div class="flex gap-4 items-start mb-4 mt-4">
+                            <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isCorrect ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
+                                <i class="fa-solid ${isCorrect ? 'fa-check' : 'fa-times'}"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 pt-1 leading-snug">${idx + 1}. ${q.text}</h3>
+                        </div>
+                        <div class="pr-12 space-y-2">
+                `;
+
+                if (!isCorrect && userAns) {
+                    html += `
+                        <div class="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg">
+                            <i class="fa-solid fa-times-circle"></i> <span class="font-medium">إجابتك: ${userAns}</span>
+                        </div>
+                    `;
+                }
+                if (!userAns) {
+                    html += `
+                        <div class="flex items-center gap-2 text-slate-500 bg-slate-100 p-3 rounded-lg">
+                            <i class="fa-solid fa-circle-exclamation"></i> <span class="font-medium">لم يتم الإجابة على هذا السؤال.</span>
+                        </div>
+                    `;
+                }
+
+                html += `
+                            <div class="flex items-center gap-2 text-green-700 bg-green-50 p-3 rounded-lg">
+                                <i class="fa-solid fa-check-circle"></i> <span class="font-medium">الإجابة الصحيحة: ${q.correctAnswer}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                reviewContainer.innerHTML += html;
+            });
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
