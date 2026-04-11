@@ -58,7 +58,7 @@
         <div id="loading-screen" class="flex-1 flex flex-col items-center justify-center p-4 mt-8">
             <div class="loader mb-4"></div>
             <p class="text-slate-600 font-bold text-lg">جاري تجهيز بنك الأسئلة...</p>
-            <p class="text-slate-400 text-sm mt-2" id="loading-status">يتم استدعاء الملفات...</p>
+            <p class="text-slate-400 text-sm mt-2" id="loading-status">يتم استدعاء الملفات (القواعد، الشاخصات، الميكانيك)...</p>
         </div>
 
         <!-- شاشة الترحيب -->
@@ -238,7 +238,6 @@
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // متغيرات لتخزين بنك الأسئلة من كل ملف
         let rulesBank = [];
         let signsBank = [];
         let mechanicsBank = [];
@@ -249,31 +248,53 @@
         let timeLeft = 15 * 60;
         let timerId = null;
 
-        // دالة جلب الأسئلة من الملفات الثلاثة بشكل متزامن لضمان السرعة
+        // دالة لتوحيد تنسيق الأسئلة من الملفات وضمان وجود الإجابة الصحيحة
+        function normalizeBank(data, categoryName, idPrefix) {
+            // الملفات المرفوعة تحتوي على مصفوفة الأسئلة داخل مفتاح "questions"
+            const questionsArray = Array.isArray(data) ? data : (data.questions || []);
+            
+            return questionsArray.map((q, idx) => {
+                // الاعتماد على أن الخيار الأول في ملفك هو الإجابة الصحيحة دائماً
+                const correctAns = q.correctAnswer || (q.options && q.options.length > 0 ? q.options[0] : "");
+                
+                return {
+                    id: idPrefix + idx,
+                    category: categoryName,
+                    text: q.question || q.text,
+                    options: q.options || [],
+                    correctAnswer: correctAns, 
+                    imageSvg: q.svg || q.imageSvg || null,
+                    imageUrl: q.imageUrl || null
+                };
+            });
+        }
+
         async function fetchAllQuestions() {
             const statusText = document.getElementById('loading-status');
             
             try {
-                // نطلب الملفات الثلاثة بوقت واحد
+                // جلب الملفات الثلاثة بالتزامن
                 const [rulesResponse, signsResponse, mechanicsResponse] = await Promise.all([
                     fetch('rules.json'),
                     fetch('signs.json'),
                     fetch('mechanics.json')
                 ]);
 
-                // التأكد من استجابة جميع الملفات
                 if (!rulesResponse.ok || !signsResponse.ok || !mechanicsResponse.ok) {
-                    throw new Error('فشل في تحميل أحد الملفات (تأكد من وجود rules.json و signs.json و mechanics.json بجانب هذا الملف)');
+                    throw new Error('يرجى التأكد من رفع ملفات rules.json و signs.json و mechanics.json بجانب هذا الملف.');
                 }
 
-                statusText.innerText = "يتم تحليل البيانات...";
+                statusText.innerText = "يتم تحليل ودمج البيانات...";
 
-                // تحويل الاستجابات إلى مصفوفات الجافاسكريبت
-                rulesBank = await rulesResponse.json();
-                signsBank = await signsResponse.json();
-                mechanicsBank = await mechanicsResponse.json();
+                const rulesData = await rulesResponse.json();
+                const signsData = await signsResponse.json();
+                const mechanicsData = await mechanicsResponse.json();
 
-                // عند النجاح
+                // توحيد الهيكلة (هنا يتم استخراج الإجابة الصحيحة تلقائياً)
+                rulesBank = normalizeBank(rulesData, 'rules', 'r');
+                signsBank = normalizeBank(signsData, 'signs', 's');
+                mechanicsBank = normalizeBank(mechanicsData, 'mechanics', 'm');
+
                 document.getElementById('loading-screen').classList.add('hidden');
                 document.getElementById('welcome-screen').classList.remove('hidden');
 
@@ -283,15 +304,13 @@
                     <div class="text-red-500 text-5xl mb-4"><i class="fa-solid fa-circle-exclamation"></i></div>
                     <p class="text-red-600 font-bold text-lg mb-2">حدث خطأ أثناء تحميل الأسئلة</p>
                     <p class="text-slate-500 text-sm max-w-md text-center bg-red-50 p-3 rounded border border-red-100">${error.message}</p>
-                    <p class="text-slate-400 text-xs mt-4">تلميح: يجب أن تعمل هذه الصفحة من خلال سيرفر الويب (مثل Live Server أو GitHub Pages) لكي تتمكن من قراءة ملفات الـ JSON المتعددة.</p>
+                    <p class="text-slate-400 text-xs mt-4">تنبيه: يجب تشغيل هذه الصفحة عبر خادم محلي (Live Server) أو بعد رفعها على استضافة (مثل Github Pages).</p>
                 `;
             }
         }
 
-        // تشغيل عملية الجلب فور فتح الصفحة
         window.onload = fetchAllQuestions;
 
-        // دالة خلط المصفوفات
         function shuffle(array) {
             let newArray = [...array];
             for (let i = newArray.length - 1; i > 0; i--) {
@@ -302,24 +321,23 @@
         }
 
         function startTest() {
-            // سحب الأسئلة عشوائياً من كل بنك تم تحميله 
-            // تأكدنا من خلط كل مجموعة قبل القص للحصول على عشوائية حقيقية
+            // سحب عدد محدد من كل تصنيف
             const selectedRules = shuffle(rulesBank).slice(0, 12);
             const selectedSigns = shuffle(signsBank).slice(0, 9);
             const selectedMechs = shuffle(mechanicsBank).slice(0, 9);
 
-            // دمج الـ 30 سؤالاً وخلطهم بالكامل
+            // دمج الكل وخلط ترتيب الأسئلة
             const combined = shuffle([...selectedRules, ...selectedSigns, ...selectedMechs]);
             
-            // خلط خيارات الأجوبة داخل كل سؤال
+            // خلط خيارات الأجوبة لكل سؤال حتى لا تبقى الإجابة الصحيحة هي الأولى دائماً
             currentQuestions = combined.map(q => ({
                 ...q,
-                shuffledOptions: shuffle(q.options)
+                shuffledOptions: shuffle([...q.options])
             }));
 
             currentIndex = 0;
             answers = {};
-            timeLeft = 15 * 60; // 15 دقيقة بالثواني
+            timeLeft = 15 * 60;
 
             document.getElementById('welcome-screen').classList.add('hidden');
             document.getElementById('results-screen').classList.add('hidden');
@@ -342,12 +360,11 @@
             const badge = document.getElementById('category-badge');
             let catIcon = '';
             
-            // تم تمييز الأقسام لتتطابق مع ملفاتك
-            if(q.category === 'rules' || rulesBank.some(r => r.id === q.id)) {
+            if(q.category === 'rules') {
                 badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm bg-indigo-50 text-indigo-600 border border-indigo-100';
                 catIcon = '<i class="fa-solid fa-book-open ml-1"></i>';
                 badge.innerHTML = catIcon + ' قواعد سير';
-            } else if(q.category === 'signs' || signsBank.some(s => s.id === q.id)) {
+            } else if(q.category === 'signs') {
                 badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm bg-orange-50 text-orange-600 border border-orange-100';
                 catIcon = '<i class="fa-solid fa-triangle-exclamation ml-1"></i>';
                 badge.innerHTML = catIcon + ' شاخصات';
@@ -358,7 +375,6 @@
             }
 
             const imgContainer = document.getElementById('question-image-container');
-            // يدعم الآن إما كود SVG مدمج أو رابط صورة خارجية
             if(q.imageSvg) {
                 imgContainer.innerHTML = q.imageSvg;
                 imgContainer.classList.remove('hidden');
@@ -469,9 +485,8 @@
 
             currentQuestions.forEach(q => {
                 if (answers[q.id] === q.correctAnswer) {
-                    // الاعتماد على الصنف الموجود بالسؤال أو البحث عنه في المصفوفات
-                    if(q.category === 'rules' || rulesBank.some(r => r.id === q.id)) scores.rules.correct++;
-                    else if(q.category === 'signs' || signsBank.some(s => s.id === q.id)) scores.signs.correct++;
+                    if(q.category === 'rules') scores.rules.correct++;
+                    else if(q.category === 'signs') scores.signs.correct++;
                     else scores.mechanics.correct++;
                     
                     scores.total++;
@@ -503,13 +518,9 @@
                 const isCorrect = userAns === q.correctAnswer;
                 
                 let catLabel, catColor;
-                if(q.category === 'rules' || rulesBank.some(r => r.id === q.id)) {
-                    catLabel = 'قواعد سير'; catColor = 'bg-indigo-500';
-                } else if(q.category === 'signs' || signsBank.some(s => s.id === q.id)) {
-                    catLabel = 'شاخصات'; catColor = 'bg-orange-500';
-                } else {
-                    catLabel = 'ميكانيك'; catColor = 'bg-slate-500';
-                }
+                if(q.category === 'rules') { catLabel = 'قواعد سير'; catColor = 'bg-indigo-500'; } 
+                else if(q.category === 'signs') { catLabel = 'شاخصات'; catColor = 'bg-orange-500'; } 
+                else { catLabel = 'ميكانيك'; catColor = 'bg-slate-500'; }
 
                 let imgHtml = '';
                 if(q.imageSvg) {
