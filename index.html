@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الاختبار النظري الشامل - سوريا</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { font-family: 'Cairo', sans-serif; }
@@ -19,14 +22,15 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-20">
 
+    <!-- شاشة الترحيب -->
     <div id="welcome-screen" class="flex-1 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 text-center border border-slate-100">
             <div class="bg-blue-100 text-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
-                <i class="fa-solid fa-map"></i>
+                <i class="fa-solid fa-car-side"></i>
             </div>
-            <h1 class="text-3xl font-bold text-slate-900 mb-4">الاختبار النظري الشامل</h1>
+            <h1 class="text-3xl font-bold text-slate-900 mb-4">الاختبار النظري للقيادة</h1>
             <p class="text-slate-600 mb-6 leading-relaxed">
-                محاكي الفحص النظري المحدث (سوريا). يتكون الاختبار من 30 سؤالاً مقسمة حسب المعايير الرسمية بنسبة 100%.
+                محاكي الفحص النظري السوري. يتكون من 30 سؤالاً مقسمة حسب المعايير الرسمية وتتضمن أسئلة مصورة للشاخصات.
             </p>
             
             <div class="bg-slate-50 rounded-xl p-5 mb-8 text-right border border-slate-100">
@@ -49,8 +53,8 @@
                     </div>
                 </div>
                 <div class="mt-4 flex justify-between items-center text-sm font-semibold text-slate-500 px-2">
-                    <span>الوقت المتاح: 15 دقيقة</span>
-                    <span>نسبة النجاح: 80%</span>
+                    <span class="text-blue-600"><i class="fa-solid fa-clock"></i> 15 دقيقة</span>
+                    <span class="text-green-600"><i class="fa-solid fa-check-double"></i> نسبة النجاح: 60%</span>
                 </div>
             </div>
 
@@ -61,6 +65,7 @@
         </div>
     </div>
 
+    <!-- شاشة الاختبار -->
     <div id="test-screen" class="hidden flex-1 flex flex-col">
         <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-10">
             <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -81,9 +86,13 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
-                <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 leading-snug"></h2>
+                <!-- حاوية الصورة إن وجدت -->
+                <div id="question-image-container" class="mb-6 w-full flex justify-center hidden"></div>
+                
+                <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 leading-snug text-center"></h2>
                 <div id="options-container" class="space-y-3">
-                    </div>
+                    <!-- الخيارات -->
+                </div>
             </div>
 
             <div class="flex justify-between items-center mt-auto">
@@ -97,6 +106,7 @@
         </main>
     </div>
 
+    <!-- شاشة النتائج -->
     <div id="results-screen" class="hidden flex-1 p-4 pt-8">
         <div class="max-w-3xl mx-auto">
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-8 text-center border border-slate-100 relative">
@@ -154,7 +164,7 @@
                     </div>
 
                     <button onclick="startTest()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2 mx-auto w-full md:w-auto">
-                        <i class="fa-solid fa-rotate-right"></i> إعادة الاختبار عشوائياً
+                        <i class="fa-solid fa-rotate-right"></i> إختبار جديد بأسئلة عشوائية
                     </button>
                 </div>
             </div>
@@ -164,10 +174,11 @@
         </div>
     </div>
 
+    <!-- كود الجافاسكربت -->
     <script>
-        // بنك الأسئلة
+        // بنك الأسئلة المدمج مع الصور (SVG)
         const QUESTION_BANK = [
-            // قواعد (rules)
+            // --- قواعد السير ---
             { id: 1, category: 'rules', text: "عند دخولك في نفق أثناء القيادة نهاراً عليك:", options: ["إضاءة المصابيح وتخفيف السرعة", "إضاءة المصابيح وزيادة السرعة", "استعمال الزمور", "الاستمرار بالسير بطريقة طبيعية"], correctAnswer: "إضاءة المصابيح وتخفيف السرعة" },
             { id: 2, category: 'rules', text: "يمنع استعمال الزمور:", options: ["بوجود اشارة ممنوع التزمير", "داخل المدينة فقط", "خارج المدينة فقط", "منعاً باتاً"], correctAnswer: "بوجود اشارة ممنوع التزمير" },
             { id: 3, category: 'rules', text: "إن المركبات غير المسرعة والتي تسير على طريق من ثلاثة مسارب عليها السير في:", options: ["المسرب الأيمن", "المسرب الأيسر", "المسرب الأوسط", "أي مسرب كان"], correctAnswer: "المسرب الأيمن" },
@@ -183,38 +194,32 @@
             { id: 13, category: 'rules', text: "إن ترك مسافة أمان بين مركبتك والمركبة التي تسير أمامك يمكنك من:", options: ["تفادي اصطدامك بها في حال توقفت فجاة", "تجاوز هذه المركبة بسهولة", "رؤية الإشارات الصادرة عن هذه المركبة بشكل افضل", "السماح لهذه المركبة برؤية مركبتك بشكل افضل"], correctAnswer: "تفادي اصطدامك بها في حال توقفت فجاة" },
             { id: 14, category: 'rules', text: "عند تقاطع خال من الإشارات ومن شرطي المرور تكون أفضلية المرور للسائق الذي:", options: ["يكون يمينه مفتوحاً", "يكون يساره مفتوحاً", "يصل أولا", "يكون يمينه مغلقاً"], correctAnswer: "يكون يمينه مفتوحاً" },
             { id: 15, category: 'rules', text: "أثناء القيادة في الضباب يجب على السائق:", options: ["تخفيف السرعة واخذ الحيطة والحذر", "السير بسرعة كبيرة لتجاوز منطقة الضباب", "السير وسط الطريق واستعمال الزمور بشكل متواصل", "إطفاء جميع انوار المركبة"], correctAnswer: "تخفيف السرعة واخذ الحيطة والحذر" },
-            { id: 16, category: 'rules', text: "حفاظاً على سلامة الأطفال في المركبة يتم وضعهم:", options: ["في المقعد الخلفي مع ربط حزام الأمان", "في المقعد الأمامي مع ربط حزام الأمان", "في المقعد الخلفي بدون ربط حزام الأمان", "يتم حملهم بين الذراعين"], correctAnswer: "في المقعد الخلفي مع ربط حزام الأمان" },
-            { id: 17, category: 'rules', text: "ما الخطر الناجم عن بدء هطول الأمطار بعد فترة جفاف طويلة ؟", options: ["تتكون طبقة زلقة خطيرة فوق سطح الطرق", "تتكون برك مائية تؤدي إلى اتساخ المركبة", "يتكون الضباب ويعيق الرؤية", "تتكون الصواعق وتشكل خطر على سير المركبة"], correctAnswer: "تتكون طبقة زلقة خطيرة فوق سطح الطرق" },
-            { id: 18, category: 'rules', text: "إذا كان لديك مسافة أمان بينك وبين المركبة التي أمامك ودخلت مركبة أخرى بينكما فيجب أن:", options: ["تنشىء مسافة أمان جديدة خلفها", "تتجاوز هذه المركبة من جديد", "تستعمل الزمور وتضيء الأنوار", "لا تقوم بأي إجراء"], correctAnswer: "تنشىء مسافة أمان جديدة خلفها" },
+            { id: 16, category: 'rules', text: "ما الخطر الناجم عن بدء هطول الأمطار بعد فترة جفاف طويلة ؟", options: ["تتكون طبقة زلقة خطيرة فوق سطح الطرق", "تتكون برك مائية تؤدي إلى اتساخ المركبة", "يتكون الضباب ويعيق الرؤية", "تتكون الصواعق وتشكل خطر على سير المركبة"], correctAnswer: "تتكون طبقة زلقة خطيرة فوق سطح الطرق" },
 
-            // شاخصات (signs)
-            { id: 19, category: 'signs', text: "إن إشارات المرور ذات الشكل المثلث ذو الحواف الحمراء هي إشارات:", options: ["تحذيرية", "إرشادية", "مانعة", "إلزامية"], correctAnswer: "تحذيرية" },
-            { id: 20, category: 'signs', text: "إن إشارات المرور ذات الشكل الدائري ذات الحواف الحمراء هي إشارات:", options: ["مانعة", "تحذيرية", "إرشادية", "إلزامية"], correctAnswer: "مانعة" },
-            { id: 21, category: 'signs', text: "إن إشارة «قف» هي الإشارة المرورية الثابتة الوحيدة ذات شكل هندسي:", options: ["ثماني الأضلاع", "مستطيل", "مربع", "دائري"], correctAnswer: "ثماني الأضلاع" },
-            { id: 22, category: 'signs', text: "إن إشارات المرور ذات الشكل الدائري باللون الأزرق هي إشارات:", options: ["إلزامية (إجبارية)", "تحذيرية", "مانعة", "مؤقتة"], correctAnswer: "إلزامية (إجبارية)" },
-            { id: 23, category: 'signs', text: "الشاخصة التي تكون على شكل مثلث مقلوب (رأسه للأسفل) وحوافه حمراء تعني:", options: ["أعط أفضلية المرور (ليس لك حق الأولوية)", "طريق ذو اتجاهين", "ممنوع التجاوز", "نهاية الطريق المزدوج"], correctAnswer: "أعط أفضلية المرور (ليس لك حق الأولوية)" },
-            { id: 24, category: 'signs', text: "الشاخصة الدائرية الزرقاء التي تحتوي على سهم أبيض يتجه لليمين تعني:", options: ["اتجاه إجباري لليمين", "ممنوع الانعطاف لليمين", "طريق باتجاه واحد", "موقف سيارات بالجهة اليمنى"], correctAnswer: "اتجاه إجباري لليمين" },
-            { id: 25, category: 'signs', text: "الشاخصة الدائرية الحمراء التي بداخلها رقم (80) تعني:", options: ["السرعة القصوى المسموحة هي 80 كم/سا", "أدنى سرعة مسموحة هي 80 كم/سا", "المسافة المتبقية للمدينة 80 كم", "وزن المركبة المسموح 80 طن"], correctAnswer: "السرعة القصوى المسموحة هي 80 كم/سا" },
-            { id: 26, category: 'signs', text: "شاخصة دائرية زرقاء محاطة بإطار أحمر وبداخلها خطين متقاطعين (X) باللون الأحمر تعني:", options: ["ممنوع الوقوف والتوقف", "ممنوع الدخول", "ممنوع التجاوز", "موقف مأجور"], correctAnswer: "ممنوع الوقوف والتوقف" },
-            { id: 27, category: 'signs', text: "الشاخصة المربعة الزرقاء التي بداخلها حرف (P) باللون الأبيض تعني:", options: ["موقف سيارات", "محطة وقود", "مركز شرطة", "نهاية الطريق السريع"], correctAnswer: "موقف سيارات" },
-            { id: 28, category: 'signs', text: "شاخصة ذات شكل معيّن (مربع مائل) لونها أصفر بحواف بيضاء تعني:", options: ["طريق ذو أفضلية مرور", "نهاية طريق أفضلية المرور", "منطقة أعمال وحفريات", "تقاطع خطر"], correctAnswer: "طريق ذو أفضلية مرور" },
-            { id: 29, category: 'signs', text: "الشاخصة الدائرية الحمراء التي بداخلها سيارتين متجاورتين (واحدة حمراء والأخرى سوداء) تعني:", options: ["ممنوع التجاوز للسيارات", "طريق ذو اتجاهين", "موقف سيارات مزدوج", "طريق زلق"], correctAnswer: "ممنوع التجاوز للسيارات" },
-            { id: 30, category: 'signs', text: "الشاخصة الدائرية الحمراء التي بداخلها خط أبيض أفقي (عرضي) تعني:", options: ["ممنوع الدخول (طريق باتجاه واحد معاكس)", "ممنوع التوقف", "قف", "نهاية السرعة القصوى"], correctAnswer: "ممنوع الدخول (طريق باتجاه واحد معاكس)" },
+            // --- الشاخصات المرورية (مصورة) ---
+            { id: 19, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="50,15 95,90 5,90" fill="white" stroke="#ef4444" stroke-width="10" stroke-linejoin="round"/><rect x="46" y="40" width="8" height="25" fill="black"/><circle cx="50" cy="75" r="5" fill="black"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["إشارة تحذيرية عامة", "نهاية طريق", "إشارة مانعة", "إلزامية"], correctAnswer: "إشارة تحذيرية عامة" },
+            { id: 21, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="30,5 70,5 95,30 95,70 70,95 30,95 5,70 5,30" fill="#ef4444" stroke="white" stroke-width="2"/><text x="50" y="55" font-size="28" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold">قف</text></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["قف (وقوف إجباري)", "ممنوع الدخول", "خفف السرعة", "نهاية الطريق"], correctAnswer: "قف (وقوف إجباري)" },
+            { id: 23, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="50,95 95,15 5,15" fill="white" stroke="#ef4444" stroke-width="12" stroke-linejoin="round"/></svg>`, text: "ماذا تعني هذه الشاخصة (مثلث مقلوب)؟", options: ["أعط أفضلية المرور", "طريق ذو اتجاهين", "ممنوع التجاوز", "نهاية الطريق المزدوج"], correctAnswer: "أعط أفضلية المرور" },
+            { id: 24, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="#3b82f6"/><path d="M30,55 h25 v-15 l20,20 l-20,20 v-15 h-25 z" fill="white"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["اتجاه إجباري لليمين", "ممنوع الانعطاف لليمين", "طريق باتجاه واحد", "موقف سيارات بالجهة اليمنى"], correctAnswer: "اتجاه إجباري لليمين" },
+            { id: 25, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="white" stroke="#ef4444" stroke-width="12"/><text x="50" y="55" font-size="36" fill="black" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-family="sans-serif">80</text></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["السرعة القصوى المسموحة 80 كم/سا", "أدنى سرعة مسموحة هي 80 كم/سا", "المسافة المتبقية للمدينة 80 كم", "وزن المركبة المسموح 80 طن"], correctAnswer: "السرعة القصوى المسموحة 80 كم/سا" },
+            { id: 26, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="#3b82f6" stroke="#ef4444" stroke-width="10"/><line x1="18" y1="18" x2="82" y2="82" stroke="#ef4444" stroke-width="10"/><line x1="82" y1="18" x2="18" y2="82" stroke="#ef4444" stroke-width="10"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["ممنوع الوقوف والتوقف", "ممنوع الدخول", "ممنوع التجاوز", "موقف مأجور"], correctAnswer: "ممنوع الوقوف والتوقف" },
+            { id: 27, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><rect x="10" y="10" width="80" height="80" rx="10" fill="#1e40af" stroke="white" stroke-width="4"/><text x="50" y="58" font-size="50" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-family="sans-serif">P</text></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["موقف سيارات", "محطة وقود", "مركز شرطة", "نهاية الطريق السريع"], correctAnswer: "موقف سيارات" },
+            { id: 28, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="50,5 95,50 50,95 5,50" fill="white"/><polygon points="50,15 85,50 50,85 15,50" fill="#fbbf24"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["طريق ذو أفضلية مرور", "نهاية طريق أفضلية المرور", "منطقة أعمال وحفريات", "تقاطع خطر"], correctAnswer: "طريق ذو أفضلية مرور" },
+            { id: 29, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="white" stroke="#ef4444" stroke-width="12"/><rect x="25" y="45" width="20" height="15" fill="#ef4444" rx="3"/><rect x="55" y="45" width="20" height="15" fill="black" rx="3"/><circle cx="30" cy="60" r="3" fill="black"/><circle cx="40" cy="60" r="3" fill="black"/><circle cx="60" cy="60" r="3" fill="gray"/><circle cx="70" cy="60" r="3" fill="gray"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["ممنوع التجاوز للسيارات", "طريق ذو اتجاهين", "موقف سيارات مزدوج", "طريق زلق"], correctAnswer: "ممنوع التجاوز للسيارات" },
+            { id: 30, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="#ef4444"/><rect x="20" y="42" width="60" height="16" fill="white"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["ممنوع الدخول (طريق باتجاه واحد معاكس)", "ممنوع التوقف", "قف", "نهاية السرعة القصوى"], correctAnswer: "ممنوع الدخول (طريق باتجاه واحد معاكس)" },
 
-            // ميكانيك (mechanics)
+            // --- الميكانيك ---
             { id: 31, category: 'mechanics', text: "وظيفة صمام الحرارة (الترموستات) هي:", options: ["تنظيم درجة حرارة المحرك", "تنظيم شحن المدخرة (البطارية) بالكهرباء", "قياس درجة حرارة المحرك", "توزيع الكهرباء على شمعات الاحتراق (البواجي)"], correctAnswer: "تنظيم درجة حرارة المحرك" },
             { id: 32, category: 'mechanics', text: "وظيفة الفاصل الواصل (الدبرياج) هي:", options: ["فصل ووصل الحركة بين المحرك وعلبة السرعة (البواط)", "فصل ووصل الحركة بين علبة السرعة وعمود نقل الحركة", "تغيير سرعة المحرك", "تغيير سرعة السيارة"], correctAnswer: "فصل ووصل الحركة بين المحرك وعلبة السرعة (البواط)" },
             { id: 33, category: 'mechanics', text: "وظيفة المقلع (المرش) هي:", options: ["إقلاع المحرك", "شحن المدخرة (البطارية) بالكهرباء", "توزيع الكهرباء على شمعات الاحتراق (البواجي)", "إعطاء الشرارة لخليط الهواء والبنزين"], correctAnswer: "إقلاع المحرك" },
-            { id: 34, category: 'mechanics', text: "وظيفة المولد (الدينامو) هي:", options: ["شحن المدخرة (البطارية) بالكهرباء", "رفع جهد المدخرة (البطارية)", "إعطاء الشرارة لخليط الهواء والبنزين", "إقلاع المحرك"], correctAnswer: "شحن المدخرة (البطارية) بالكهرباء" },
-            { id: 35, category: 'mechanics', text: "وظيفة شمعات الاحتراق (البواجي) هي:", options: ["إعطاء الشرارة لخليط الهواء والبنزين", "شحن المدخرة (البطارية) بالكهرباء", "رفع جهد المدخرة (البطارية)", "تزويد ملف الإشعال (البوبين) بالكهرباء"], correctAnswer: "إعطاء الشرارة لخليط الهواء والبنزين" },
-            { id: 36, category: 'mechanics', text: "وظيفة المبرد (الرديتير) هي:", options: ["خفض حرارة ماء تبريد المحرك", "خفض حرارة هواء المكيف", "خفض حرارة ماء المساحات", "ضخ ماء التبريد إلى المحرك"], correctAnswer: "خفض حرارة ماء تبريد المحرك" },
-            { id: 37, category: 'mechanics', text: "وظيفة مضخة البنزين هي:", options: ["ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)", "ضخ البنزين من المفحم (الكربرتير) إلى المحرك", "خلط البنزين مع الهواء", "تصفية البنزين"], correctAnswer: "ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)" },
-            { id: 38, category: 'mechanics', text: "يجب تبديل إطارات المركبة إذا قل عمق نقوش الإطارات عن:", options: ["1.6 ملم", "2.4 ملم", "4 ملم", "5 ملم"], correctAnswer: "1.6 ملم" },
-            { id: 39, category: 'mechanics', text: "وظيفة علبة السرعة (البواط) هي:", options: ["تغيير سرعة وعزم المركبة وتأمين الحركة للخلف", "نقل الحركة من المقود للإطارات", "تزويد المحرك بالوقود", "إيقاف المركبة بشكل تام"], correctAnswer: "تغيير سرعة وعزم المركبة وتأمين الحركة للخلف" },
-            { id: 40, category: 'mechanics', text: "ما هي الوظيفة الأساسية لزيت المحرك؟", options: ["تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك", "زيادة سرعة الاحتراق في المحرك", "تبريد مياه الرديتير", "منع تجمد الوقود في الشتاء"], correctAnswer: "تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك" },
-            { id: 41, category: 'mechanics', text: "إن لون ضوء الرجوع إلى الخلف في المركبات هو:", options: ["أبيض", "أحمر", "برتقالي", "أصفر"], correctAnswer: "أبيض" },
-            { id: 42, category: 'mechanics', text: "إن لون ضوء الفرامل (المكابح) في المركبات هو:", options: ["أحمر", "أبيض", "برتقالي", "أصفر"], correctAnswer: "أحمر" },
-            { id: 43, category: 'mechanics', text: "يؤدي انخفاض ضغط الهواء في عجلات المركبة عن الحد المسموح إلى:", options: ["زيادة معدل استهلاك الوقود وتآكل حواف الإطار", "نقص معدل استهلاك الوقود", "إطالة عمر الإطارات", "زيادة سرعة المركبة بشكل ملحوظ"], correctAnswer: "زيادة معدل استهلاك الوقود وتآكل حواف الإطار" }
+            { id: 34, category: 'mechanics', text: "وظيفة المبرد (الرديتير) هي:", options: ["خفض حرارة ماء تبريد المحرك", "خفض حرارة هواء المكيف", "خفض حرارة ماء المساحات", "ضخ ماء التبريد إلى المحرك"], correctAnswer: "خفض حرارة ماء تبريد المحرك" },
+            { id: 35, category: 'mechanics', text: "وظيفة مضخة البنزين هي:", options: ["ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)", "ضخ البنزين من المفحم (الكربرتير) إلى المحرك", "خلط البنزين مع الهواء", "تصفية البنزين"], correctAnswer: "ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)" },
+            { id: 36, category: 'mechanics', text: "وظيفة علبة السرعة (البواط) هي:", options: ["تغيير سرعة وعزم المركبة وتأمين الحركة للخلف", "نقل الحركة من المقود للإطارات", "تزويد المحرك بالوقود", "إيقاف المركبة بشكل تام"], correctAnswer: "تغيير سرعة وعزم المركبة وتأمين الحركة للخلف" },
+            { id: 37, category: 'mechanics', text: "ما هي الوظيفة الأساسية لزيت المحرك؟", options: ["تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك", "زيادة سرعة الاحتراق في المحرك", "تبريد مياه الرديتير", "منع تجمد الوقود في الشتاء"], correctAnswer: "تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك" },
+            
+            // أسئلة ميكانيك مصورة 
+            { id: 38, category: 'mechanics', imageSvg: `<svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto drop-shadow-md" fill="none" stroke="#475569" stroke-width="4"><rect x="30" y="20" width="40" height="40" rx="5" fill="#f1f5f9"/><line x1="30" y1="35" x2="70" y2="35"/><line x1="30" y1="45" x2="70" y2="45"/><rect x="45" y="60" width="10" height="30" fill="#94a3b8"/><circle cx="50" cy="50" r="4" fill="#334155"/></svg>`, text: "إلى ماذا يشير هذا الجزء الأساسي من المحرك؟", options: ["المكبس (البستون)", "شمعة الاحتراق (البوجيه)", "المبرد (الرديتير)", "صمام الحرارة"], correctAnswer: "المكبس (البستون)" },
+            { id: 39, category: 'mechanics', imageSvg: `<svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto drop-shadow-md" fill="none" stroke="#334155" stroke-width="4"><rect x="40" y="10" width="20" height="40" fill="#cbd5e1"/><rect x="35" y="50" width="30" height="15" fill="#475569"/><line x1="50" y1="65" x2="50" y2="85" stroke-width="6"/><path d="M 45 90 L 50 90 L 50 85" stroke-width="4"/></svg>`, text: "ما هو هذا الجزء المسؤول عن إعطاء الشرارة داخل المحرك؟", options: ["شمعات الاحتراق (البواجي)", "مضخة الماء", "المقلع (المرش)", "مصفاة الزيت"], correctAnswer: "شمعات الاحتراق (البواجي)" }
         ];
 
         let currentQuestions = [];
@@ -238,6 +243,7 @@
             const signs = QUESTION_BANK.filter(q => q.category === 'signs');
             const mechs = QUESTION_BANK.filter(q => q.category === 'mechanics');
 
+            // 12 قواعد، 9 شاخصات، 9 ميكانيك
             const selectedRules = shuffle(rules).slice(0, 12);
             const selectedSigns = shuffle(signs).slice(0, 9);
             const selectedMechs = shuffle(mechs).slice(0, 9);
@@ -267,11 +273,9 @@
             const q = currentQuestions[currentIndex];
             const isAnswered = answers[q.id] !== undefined;
 
-            // تحديث الواجهة العلوية
             document.getElementById('question-counter').innerText = `السؤال ${currentIndex + 1} من 30`;
             document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / 30) * 100}%`;
 
-            // إعداد تصنيف السؤال
             const badge = document.getElementById('category-badge');
             badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md ' + 
                 (q.category === 'rules' ? 'bg-indigo-50 text-indigo-600' : 
@@ -279,7 +283,16 @@
                  'bg-slate-100 text-slate-600');
             badge.innerText = q.category === 'rules' ? 'قواعد سير' : q.category === 'signs' ? 'شاخصات' : 'ميكانيك';
 
-            // عرض السؤال والخيارات
+            // عرض الصورة إذا كانت متوفرة
+            const imgContainer = document.getElementById('question-image-container');
+            if(q.imageSvg) {
+                imgContainer.innerHTML = q.imageSvg;
+                imgContainer.classList.remove('hidden');
+            } else {
+                imgContainer.innerHTML = '';
+                imgContainer.classList.add('hidden');
+            }
+
             document.getElementById('question-text').innerText = q.text;
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
@@ -299,7 +312,6 @@
                 optionsContainer.appendChild(btn);
             });
 
-            // أزرار التنقل
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
@@ -383,15 +395,15 @@
                 }
             });
 
-            const isPassed = scores.total >= 24;
+            // تحديث نسبة النجاح لتصبح 60% (18 سؤال من أصل 30)
+            const isPassed = scores.total >= 18;
             const pct = Math.round((scores.total / 30) * 100);
 
-            // تحديث العناوين والألوان
             document.getElementById('result-bar').className = `h-3 w-full ${isPassed ? 'bg-green-500' : 'bg-red-500'}`;
             document.getElementById('result-icon-container').className = `mx-auto w-20 h-20 rounded-full flex items-center justify-center mb-6 text-4xl ${isPassed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`;
             document.getElementById('result-icon').className = `fa-solid ${isPassed ? 'fa-check-circle' : 'fa-circle-exclamation'}`;
             document.getElementById('result-title').innerText = isPassed ? 'مبروك! لقد نجحت' : 'للأسف، لم تنجح هذه المرة';
-            document.getElementById('result-message').innerText = isPassed ? 'أنت مستعد لاجتياز الفحص النظري بنجاح.' : 'تحتاج إلى المزيد من التدريب ومراجعة الأقسام الضعيفة.';
+            document.getElementById('result-message').innerText = isPassed ? 'أنت مستعد لاجتياز الفحص النظري بنجاح.' : 'تحتاج إلى المزيد من التدريب ومراجعة الأقسام الضعيفة (النجاح يتطلب 60%).';
             
             document.getElementById('score-text').innerText = scores.total;
             document.getElementById('percentage-text').innerText = `${pct}%`;
@@ -412,17 +424,22 @@
                 const catLabel = q.category === 'rules' ? 'قواعد سير' : q.category === 'signs' ? 'شاخصات' : 'ميكانيك';
                 const catColor = q.category === 'rules' ? 'bg-indigo-500' : q.category === 'signs' ? 'bg-orange-500' : 'bg-slate-500';
 
+                let imgHtml = q.imageSvg ? `<div class="mt-4 mb-2 flex justify-center">${q.imageSvg}</div>` : '';
+
                 let html = `
                     <div class="bg-white rounded-2xl p-6 border-2 ${isCorrect ? 'border-green-100' : 'border-red-100'} shadow-sm relative overflow-hidden">
                         <div class="absolute top-0 right-0 px-3 py-1 rounded-bl-lg text-xs font-bold text-white ${catColor}">${catLabel}</div>
                         
-                        <div class="flex gap-4 items-start mb-4 mt-4">
+                        <div class="flex gap-4 items-start mb-2 mt-4">
                             <div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isCorrect ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
                                 <i class="fa-solid ${isCorrect ? 'fa-check' : 'fa-times'}"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-slate-900 pt-1 leading-snug">${idx + 1}. ${q.text}</h3>
+                            <h3 class="text-lg font-bold text-slate-900 pt-1 leading-snug w-full text-center">${idx + 1}. ${q.text}</h3>
                         </div>
-                        <div class="pr-12 space-y-2">
+                        
+                        ${imgHtml}
+
+                        <div class="pr-12 space-y-2 mt-4">
                 `;
 
                 if (!isCorrect && userAns) {
