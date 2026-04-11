@@ -25,13 +25,19 @@
         .social-link:hover { transform: translateY(-3px); }
         .linkedin:hover { color: #0077b5; }
         .github:hover { color: #333; }
-        .twitter:hover { color: #0f1419; } /* X Color */
+        .twitter:hover { color: #0f1419; } 
         .instagram:hover { color: #e1306c; }
+
+        /* Loader Animation */
+        .loader {
+            border: 4px solid #f3f4f6; border-top: 4px solid #2563eb;
+            border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- الهيدر (Header) -->
     <header class="bg-white border-b border-slate-200 shadow-sm py-4 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -43,15 +49,21 @@
                     <p class="text-xs text-slate-500 font-semibold">سوريا - المنهاج الحديث</p>
                 </div>
             </div>
-            <!-- تم إزالة الاسم من هنا بناءً على طلبك -->
         </div>
     </header>
 
     <div class="main-content flex flex-col pb-10">
+        
+        <!-- شاشة التحميل -->
+        <div id="loading-screen" class="flex-1 flex flex-col items-center justify-center p-4 mt-8">
+            <div class="loader mb-4"></div>
+            <p class="text-slate-600 font-bold text-lg">جاري تجهيز بنك الأسئلة...</p>
+            <p class="text-slate-400 text-sm mt-2" id="loading-status">يتم استدعاء الملفات...</p>
+        </div>
+
         <!-- شاشة الترحيب -->
-        <div id="welcome-screen" class="flex-1 flex items-center justify-center p-4 mt-8">
+        <div id="welcome-screen" class="hidden flex-1 flex items-center justify-center p-4 mt-8">
             <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 text-center border border-slate-100 relative overflow-hidden">
-                <!-- تأثيرات خلفية -->
                 <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10"></div>
                 <div class="absolute bottom-0 left-0 w-24 h-24 bg-slate-50 rounded-tr-full -z-10"></div>
                 
@@ -114,12 +126,10 @@
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-md border border-slate-200 p-6 md:p-10 mb-6">
-                    <!-- حاوية الصورة إن وجدت -->
                     <div id="question-image-container" class="mb-8 w-full flex justify-center hidden"></div>
-                    
                     <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 leading-snug text-center"></h2>
                     <div id="options-container" class="space-y-3">
-                        <!-- الخيارات -->
+                        <!-- الخيارات تُضاف هنا -->
                     </div>
                 </div>
 
@@ -207,81 +217,31 @@
         </div>
     </div>
 
-    <!-- الفوتر (Footer) -->
+    <!-- الفوتر -->
     <footer class="bg-white border-t border-slate-200 mt-auto">
         <div class="max-w-4xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-right">
-                <p class="font-bold text-slate-800 text-lg mb-1">تطوير: معاذ الصبوح</p>
+                <p class="font-bold text-slate-800 text-lg mb-1">تطوير وبرمجة: معاذ الصبوح</p>
                 <p class="text-sm text-slate-500">جميع الحقوق محفوظة &copy; <span id="current-year"></span></p>
             </div>
             
             <div class="flex items-center gap-5 text-2xl text-slate-400">
-                <a href="https://www.linkedin.com/in/moazalsabouh" target="_blank" rel="noopener noreferrer" class="social-link linkedin" title="LinkedIn">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/MoazAlsabouh" target="_blank" rel="noopener noreferrer" class="social-link github" title="GitHub">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="https://x.com/moazAlsabouh" target="_blank" rel="noopener noreferrer" class="social-link twitter" title="X">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-                <a href="https://instagram.com/moazns" target="_blank" rel="noopener noreferrer" class="social-link instagram" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
+                <a href="https://www.linkedin.com/in/moazalsabouh" target="_blank" class="social-link linkedin"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/MoazAlsabouh" target="_blank" class="social-link github"><i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/moazAlsabouh" target="_blank" class="social-link twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://instagram.com/moazns" target="_blank" class="social-link instagram"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- كود الجافاسكربت -->
     <script>
-        // ضبط السنة تلقائياً في الفوتر
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // بنك الأسئلة المدمج مع الصور (SVG)
-        const QUESTION_BANK = [
-            // --- قواعد السير ---
-            { id: 1, category: 'rules', text: "عند دخولك في نفق أثناء القيادة نهاراً عليك:", options: ["إضاءة المصابيح وتخفيف السرعة", "إضاءة المصابيح وزيادة السرعة", "استعمال الزمور", "الاستمرار بالسير بطريقة طبيعية"], correctAnswer: "إضاءة المصابيح وتخفيف السرعة" },
-            { id: 2, category: 'rules', text: "يمنع استعمال الزمور:", options: ["بوجود اشارة ممنوع التزمير", "داخل المدينة فقط", "خارج المدينة فقط", "منعاً باتاً"], correctAnswer: "بوجود اشارة ممنوع التزمير" },
-            { id: 3, category: 'rules', text: "إن المركبات غير المسرعة والتي تسير على طريق من ثلاثة مسارب عليها السير في:", options: ["المسرب الأيمن", "المسرب الأيسر", "المسرب الأوسط", "أي مسرب كان"], correctAnswer: "المسرب الأيمن" },
-            { id: 4, category: 'rules', text: "البقعة العمياء بالنسبة لسائق المركبة هي:", options: ["منطقة خارج نطاق مرايا المركبة", "منطقة ضمن نطاق مرايا المركبة", "منطقة غير مضاءة ليلا", "منطقة كثيفة الضباب"], correctAnswer: "منطقة خارج نطاق مرايا المركبة" },
-            { id: 5, category: 'rules', text: "إذا أراد السائق أن ينعطف بمركبته إلى جهة اليمين عليه قبل الانعطاف أن ينظر في:", options: ["كل المرايا وخاصة في المرأة اليمنى", "المرأة اليمني فقط", "المرأة الداخلية فقط", "المرأة اليسرى فقط"], correctAnswer: "كل المرايا وخاصة في المرأة اليمنى" },
-            { id: 6, category: 'rules', text: "في حال انزلقت مركبتك عليك كسائق أن تكون ردة فعلك الأولى:", options: ["لا تضغط على الفرامل وتوجه المركبة الى الجهة التي تنزلق بها مؤخرتها", "تضغط على الفرامل وتوجه المركبة بعكس اتجاه انزلاق مؤخرتها", "تشد فرامل اليد وتوجه المركبة الى الجهة التي تنزلق بها مؤخرتها", "تزيد السرعة وتوجه المركبة بعكس اتجاه انزلاق مؤخرتها"], correctAnswer: "لا تضغط على الفرامل وتوجه المركبة الى الجهة التي تنزلق بها مؤخرتها" },
-            { id: 7, category: 'rules', text: "عندما يريد السائق أن يستمر بالتقدم بشكل مستقيم عبر التقاطع عليه أن:", options: ["لا يعطي اية إشارة", "يعطي إشارة إلى اليمين", "يعطي إشارة إلى اليسار", "يستعمل الإضاءة التحذيرية"], correctAnswer: "لا يعطي اية إشارة" },
-            { id: 8, category: 'rules', text: "عند تقاطع الطرق يجب على سائق المركبة:", options: ["تخفيف السرعة", "استعمال الزمور", "إنارة الضوء العالي", "استعمال اضواء التحذير"], correctAnswer: "تخفيف السرعة" },
-            { id: 9, category: 'rules', text: "في حال ظهور مركبة من الجهة المعاكسة اثناء استعمالك للإضاءة العالية ليلاً عليك:", options: ["تخفيض الضوء فوراً", "تقطيع الضوء بتبديله بين العالي والمنخفض", "إطفاء الانوار بشكل كامل", "تخفيض السرعة فورا"], correctAnswer: "تخفيض الضوء فوراً" },
-            { id: 10, category: 'rules', text: "يسمح بإيقاف المركبة على طريق ذو مسلكين متعاكسين:", options: ["على يمين اتجاه سير المركبة بشكل يوازي الرصيف", "على يمين اتجاه سير المركبة بشكل عرضي", "على الرصيف", "في أي جهة طالما أنها لا تعيق حركة السير"], correctAnswer: "على يمين اتجاه سير المركبة بشكل يوازي الرصيف" },
-            { id: 11, category: 'rules', text: "عندما يسمع السائق صفارة إنذار مركبة الطوارئ أثناء القيادة عليه أن:", options: ["يتنحى جانبا أو يتوقف", "يسير امامها ويستعمل الزمور ليفتح لها الطريق", "يزيد سرعته كي لا يعرقل السير", "يسير خلفها مباشرة كسبا للوقت"], correctAnswer: "يتنحى جانبا أو يتوقف" },
-            { id: 12, category: 'rules', text: "إن وضع حزام الأمان:", options: ["ضروري لجميع ركاب السيارة", "ضروري للسائق فقط", "ضروري للركاب في المقعد الامامي فقط", "غير ضروري داخل المدينة"], correctAnswer: "ضروري لجميع ركاب السيارة" },
-            { id: 13, category: 'rules', text: "إن ترك مسافة أمان بين مركبتك والمركبة التي تسير أمامك يمكنك من:", options: ["تفادي اصطدامك بها في حال توقفت فجاة", "تجاوز هذه المركبة بسهولة", "رؤية الإشارات الصادرة عن هذه المركبة بشكل افضل", "السماح لهذه المركبة برؤية مركبتك بشكل افضل"], correctAnswer: "تفادي اصطدامك بها في حال توقفت فجاة" },
-            { id: 14, category: 'rules', text: "عند تقاطع خال من الإشارات ومن شرطي المرور تكون أفضلية المرور للسائق الذي:", options: ["يكون يمينه مفتوحاً", "يكون يساره مفتوحاً", "يصل أولا", "يكون يمينه مغلقاً"], correctAnswer: "يكون يمينه مفتوحاً" },
-            { id: 15, category: 'rules', text: "أثناء القيادة في الضباب يجب على السائق:", options: ["تخفيف السرعة واخذ الحيطة والحذر", "السير بسرعة كبيرة لتجاوز منطقة الضباب", "السير وسط الطريق واستعمال الزمور بشكل متواصل", "إطفاء جميع انوار المركبة"], correctAnswer: "تخفيف السرعة واخذ الحيطة والحذر" },
-            { id: 16, category: 'rules', text: "ما الخطر الناجم عن بدء هطول الأمطار بعد فترة جفاف طويلة ؟", options: ["تتكون طبقة زلقة خطيرة فوق سطح الطرق", "تتكون برك مائية تؤدي إلى اتساخ المركبة", "يتكون الضباب ويعيق الرؤية", "تتكون الصواعق وتشكل خطر على سير المركبة"], correctAnswer: "تتكون طبقة زلقة خطيرة فوق سطح الطرق" },
-
-            // --- الشاخصات المرورية (مصورة) ---
-            { id: 19, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="50,15 95,90 5,90" fill="white" stroke="#ef4444" stroke-width="10" stroke-linejoin="round"/><rect x="46" y="40" width="8" height="25" fill="black"/><circle cx="50" cy="75" r="5" fill="black"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["إشارة تحذيرية عامة", "نهاية طريق", "إشارة مانعة", "إلزامية"], correctAnswer: "إشارة تحذيرية عامة" },
-            { id: 21, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="30,5 70,5 95,30 95,70 70,95 30,95 5,70 5,30" fill="#ef4444" stroke="white" stroke-width="2"/><text x="50" y="55" font-size="28" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold">قف</text></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["قف (وقوف إجباري)", "ممنوع الدخول", "خفف السرعة", "نهاية الطريق"], correctAnswer: "قف (وقوف إجباري)" },
-            { id: 23, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="50,95 95,15 5,15" fill="white" stroke="#ef4444" stroke-width="12" stroke-linejoin="round"/></svg>`, text: "ماذا تعني هذه الشاخصة (مثلث مقلوب)؟", options: ["أعط أفضلية المرور", "طريق ذو اتجاهين", "ممنوع التجاوز", "نهاية الطريق المزدوج"], correctAnswer: "أعط أفضلية المرور" },
-            { id: 24, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="#3b82f6"/><path d="M30,55 h25 v-15 l20,20 l-20,20 v-15 h-25 z" fill="white"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["اتجاه إجباري لليمين", "ممنوع الانعطاف لليمين", "طريق باتجاه واحد", "موقف سيارات بالجهة اليمنى"], correctAnswer: "اتجاه إجباري لليمين" },
-            { id: 25, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="white" stroke="#ef4444" stroke-width="12"/><text x="50" y="55" font-size="36" fill="black" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-family="sans-serif">80</text></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["السرعة القصوى المسموحة 80 كم/سا", "أدنى سرعة مسموحة هي 80 كم/سا", "المسافة المتبقية للمدينة 80 كم", "وزن المركبة المسموح 80 طن"], correctAnswer: "السرعة القصوى المسموحة 80 كم/سا" },
-            { id: 26, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="#3b82f6" stroke="#ef4444" stroke-width="10"/><line x1="18" y1="18" x2="82" y2="82" stroke="#ef4444" stroke-width="10"/><line x1="82" y1="18" x2="18" y2="82" stroke="#ef4444" stroke-width="10"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["ممنوع الوقوف والتوقف", "ممنوع الدخول", "ممنوع التجاوز", "موقف مأجور"], correctAnswer: "ممنوع الوقوف والتوقف" },
-            { id: 27, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><rect x="10" y="10" width="80" height="80" rx="10" fill="#1e40af" stroke="white" stroke-width="4"/><text x="50" y="58" font-size="50" fill="white" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-family="sans-serif">P</text></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["موقف سيارات", "محطة وقود", "مركز شرطة", "نهاية الطريق السريع"], correctAnswer: "موقف سيارات" },
-            { id: 28, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><polygon points="50,5 95,50 50,95 5,50" fill="white"/><polygon points="50,15 85,50 50,85 15,50" fill="#fbbf24"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["طريق ذو أفضلية مرور", "نهاية طريق أفضلية المرور", "منطقة أعمال وحفريات", "تقاطع خطر"], correctAnswer: "طريق ذو أفضلية مرور" },
-            { id: 29, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="white" stroke="#ef4444" stroke-width="12"/><rect x="25" y="45" width="20" height="15" fill="#ef4444" rx="3"/><rect x="55" y="45" width="20" height="15" fill="black" rx="3"/><circle cx="30" cy="60" r="3" fill="black"/><circle cx="40" cy="60" r="3" fill="black"/><circle cx="60" cy="60" r="3" fill="gray"/><circle cx="70" cy="60" r="3" fill="gray"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["ممنوع التجاوز للسيارات", "طريق ذو اتجاهين", "موقف سيارات مزدوج", "طريق زلق"], correctAnswer: "ممنوع التجاوز للسيارات" },
-            { id: 30, category: 'signs', imageSvg: `<svg viewBox="0 0 100 100" class="w-40 h-40 mx-auto drop-shadow-md"><circle cx="50" cy="50" r="45" fill="#ef4444"/><rect x="20" y="42" width="60" height="16" fill="white"/></svg>`, text: "ماذا تعني هذه الشاخصة؟", options: ["ممنوع الدخول (طريق باتجاه واحد معاكس)", "ممنوع التوقف", "قف", "نهاية السرعة القصوى"], correctAnswer: "ممنوع الدخول (طريق باتجاه واحد معاكس)" },
-
-            // --- الميكانيك ---
-            { id: 31, category: 'mechanics', text: "وظيفة صمام الحرارة (الترموستات) هي:", options: ["تنظيم درجة حرارة المحرك", "تنظيم شحن المدخرة (البطارية) بالكهرباء", "قياس درجة حرارة المحرك", "توزيع الكهرباء على شمعات الاحتراق (البواجي)"], correctAnswer: "تنظيم درجة حرارة المحرك" },
-            { id: 32, category: 'mechanics', text: "وظيفة الفاصل الواصل (الدبرياج) هي:", options: ["فصل ووصل الحركة بين المحرك وعلبة السرعة (البواط)", "فصل ووصل الحركة بين علبة السرعة وعمود نقل الحركة", "تغيير سرعة المحرك", "تغيير سرعة السيارة"], correctAnswer: "فصل ووصل الحركة بين المحرك وعلبة السرعة (البواط)" },
-            { id: 33, category: 'mechanics', text: "وظيفة المقلع (المرش) هي:", options: ["إقلاع المحرك", "شحن المدخرة (البطارية) بالكهرباء", "توزيع الكهرباء على شمعات الاحتراق (البواجي)", "إعطاء الشرارة لخليط الهواء والبنزين"], correctAnswer: "إقلاع المحرك" },
-            { id: 34, category: 'mechanics', text: "وظيفة المبرد (الرديتير) هي:", options: ["خفض حرارة ماء تبريد المحرك", "خفض حرارة هواء المكيف", "خفض حرارة ماء المساحات", "ضخ ماء التبريد إلى المحرك"], correctAnswer: "خفض حرارة ماء تبريد المحرك" },
-            { id: 35, category: 'mechanics', text: "وظيفة مضخة البنزين هي:", options: ["ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)", "ضخ البنزين من المفحم (الكربرتير) إلى المحرك", "خلط البنزين مع الهواء", "تصفية البنزين"], correctAnswer: "ضخ البنزين من خزان الوقود إلى المفحم (الكربرتير)" },
-            { id: 36, category: 'mechanics', text: "وظيفة علبة السرعة (البواط) هي:", options: ["تغيير سرعة وعزم المركبة وتأمين الحركة للخلف", "نقل الحركة من المقود للإطارات", "تزويد المحرك بالوقود", "إيقاف المركبة بشكل تام"], correctAnswer: "تغيير سرعة وعزم المركبة وتأمين الحركة للخلف" },
-            { id: 37, category: 'mechanics', text: "ما هي الوظيفة الأساسية لزيت المحرك؟", options: ["تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك", "زيادة سرعة الاحتراق في المحرك", "تبريد مياه الرديتير", "منع تجمد الوقود في الشتاء"], correctAnswer: "تخفيف الاحتكاك وتبريد وتنظيف الأجزاء الداخلية للمحرك" },
-            
-            // أسئلة ميكانيك مصورة 
-            { id: 38, category: 'mechanics', imageSvg: `<svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto drop-shadow-md" fill="none" stroke="#475569" stroke-width="4"><rect x="30" y="20" width="40" height="40" rx="5" fill="#f1f5f9"/><line x1="30" y1="35" x2="70" y2="35"/><line x1="30" y1="45" x2="70" y2="45"/><rect x="45" y="60" width="10" height="30" fill="#94a3b8"/><circle cx="50" cy="50" r="4" fill="#334155"/></svg>`, text: "إلى ماذا يشير هذا الجزء الأساسي من المحرك؟", options: ["المكبس (البستون)", "شمعة الاحتراق (البوجيه)", "المبرد (الرديتير)", "صمام الحرارة"], correctAnswer: "المكبس (البستون)" },
-            { id: 39, category: 'mechanics', imageSvg: `<svg viewBox="0 0 100 100" class="w-32 h-32 mx-auto drop-shadow-md" fill="none" stroke="#334155" stroke-width="4"><rect x="40" y="10" width="20" height="40" fill="#cbd5e1"/><rect x="35" y="50" width="30" height="15" fill="#475569"/><line x1="50" y1="65" x2="50" y2="85" stroke-width="6"/><path d="M 45 90 L 50 90 L 50 85" stroke-width="4"/></svg>`, text: "ما هو هذا الجزء المسؤول عن إعطاء الشرارة داخل المحرك؟", options: ["شمعات الاحتراق (البواجي)", "مضخة الماء", "المقلع (المرش)", "مصفاة الزيت"], correctAnswer: "شمعات الاحتراق (البواجي)" }
-        ];
+        // متغيرات لتخزين بنك الأسئلة من كل ملف
+        let rulesBank = [];
+        let signsBank = [];
+        let mechanicsBank = [];
 
         let currentQuestions = [];
         let currentIndex = 0;
@@ -289,6 +249,49 @@
         let timeLeft = 15 * 60;
         let timerId = null;
 
+        // دالة جلب الأسئلة من الملفات الثلاثة بشكل متزامن لضمان السرعة
+        async function fetchAllQuestions() {
+            const statusText = document.getElementById('loading-status');
+            
+            try {
+                // نطلب الملفات الثلاثة بوقت واحد
+                const [rulesResponse, signsResponse, mechanicsResponse] = await Promise.all([
+                    fetch('rules.json'),
+                    fetch('signs.json'),
+                    fetch('mechanics.json')
+                ]);
+
+                // التأكد من استجابة جميع الملفات
+                if (!rulesResponse.ok || !signsResponse.ok || !mechanicsResponse.ok) {
+                    throw new Error('فشل في تحميل أحد الملفات (تأكد من وجود rules.json و signs.json و mechanics.json بجانب هذا الملف)');
+                }
+
+                statusText.innerText = "يتم تحليل البيانات...";
+
+                // تحويل الاستجابات إلى مصفوفات الجافاسكريبت
+                rulesBank = await rulesResponse.json();
+                signsBank = await signsResponse.json();
+                mechanicsBank = await mechanicsResponse.json();
+
+                // عند النجاح
+                document.getElementById('loading-screen').classList.add('hidden');
+                document.getElementById('welcome-screen').classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error fetching questions:", error);
+                document.getElementById('loading-screen').innerHTML = `
+                    <div class="text-red-500 text-5xl mb-4"><i class="fa-solid fa-circle-exclamation"></i></div>
+                    <p class="text-red-600 font-bold text-lg mb-2">حدث خطأ أثناء تحميل الأسئلة</p>
+                    <p class="text-slate-500 text-sm max-w-md text-center bg-red-50 p-3 rounded border border-red-100">${error.message}</p>
+                    <p class="text-slate-400 text-xs mt-4">تلميح: يجب أن تعمل هذه الصفحة من خلال سيرفر الويب (مثل Live Server أو GitHub Pages) لكي تتمكن من قراءة ملفات الـ JSON المتعددة.</p>
+                `;
+            }
+        }
+
+        // تشغيل عملية الجلب فور فتح الصفحة
+        window.onload = fetchAllQuestions;
+
+        // دالة خلط المصفوفات
         function shuffle(array) {
             let newArray = [...array];
             for (let i = newArray.length - 1; i > 0; i--) {
@@ -299,17 +302,16 @@
         }
 
         function startTest() {
-            // سحب الأسئلة (12 قواعد، 9 شاخصات، 9 ميكانيك)
-            const rules = QUESTION_BANK.filter(q => q.category === 'rules');
-            const signs = QUESTION_BANK.filter(q => q.category === 'signs');
-            const mechs = QUESTION_BANK.filter(q => q.category === 'mechanics');
+            // سحب الأسئلة عشوائياً من كل بنك تم تحميله 
+            // تأكدنا من خلط كل مجموعة قبل القص للحصول على عشوائية حقيقية
+            const selectedRules = shuffle(rulesBank).slice(0, 12);
+            const selectedSigns = shuffle(signsBank).slice(0, 9);
+            const selectedMechs = shuffle(mechanicsBank).slice(0, 9);
 
-            const selectedRules = shuffle(rules).slice(0, 12);
-            const selectedSigns = shuffle(signs).slice(0, 9);
-            const selectedMechs = shuffle(mechs).slice(0, 9);
-
+            // دمج الـ 30 سؤالاً وخلطهم بالكامل
             const combined = shuffle([...selectedRules, ...selectedSigns, ...selectedMechs]);
             
+            // خلط خيارات الأجوبة داخل كل سؤال
             currentQuestions = combined.map(q => ({
                 ...q,
                 shuffledOptions: shuffle(q.options)
@@ -317,7 +319,7 @@
 
             currentIndex = 0;
             answers = {};
-            timeLeft = 15 * 60;
+            timeLeft = 15 * 60; // 15 دقيقة بالثواني
 
             document.getElementById('welcome-screen').classList.add('hidden');
             document.getElementById('results-screen').classList.add('hidden');
@@ -339,11 +341,13 @@
 
             const badge = document.getElementById('category-badge');
             let catIcon = '';
-            if(q.category === 'rules') {
+            
+            // تم تمييز الأقسام لتتطابق مع ملفاتك
+            if(q.category === 'rules' || rulesBank.some(r => r.id === q.id)) {
                 badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm bg-indigo-50 text-indigo-600 border border-indigo-100';
                 catIcon = '<i class="fa-solid fa-book-open ml-1"></i>';
                 badge.innerHTML = catIcon + ' قواعد سير';
-            } else if(q.category === 'signs') {
+            } else if(q.category === 'signs' || signsBank.some(s => s.id === q.id)) {
                 badge.className = 'hidden sm:inline-flex text-xs font-semibold px-2 py-1 rounded-md shadow-sm bg-orange-50 text-orange-600 border border-orange-100';
                 catIcon = '<i class="fa-solid fa-triangle-exclamation ml-1"></i>';
                 badge.innerHTML = catIcon + ' شاخصات';
@@ -353,10 +357,13 @@
                 badge.innerHTML = catIcon + ' ميكانيك';
             }
 
-            // عرض الصورة
             const imgContainer = document.getElementById('question-image-container');
+            // يدعم الآن إما كود SVG مدمج أو رابط صورة خارجية
             if(q.imageSvg) {
                 imgContainer.innerHTML = q.imageSvg;
+                imgContainer.classList.remove('hidden');
+            } else if (q.imageUrl) {
+                imgContainer.innerHTML = `<img src="${q.imageUrl}" alt="صورة توضيحية للسؤال" class="max-h-48 rounded shadow-sm object-contain" />`;
                 imgContainer.classList.remove('hidden');
             } else {
                 imgContainer.innerHTML = '';
@@ -425,9 +432,8 @@
             }
         }
 
-        // دالة تحديث الوقت - وتقوم بإنهاء الامتحان تلقائياً عند انتهاء الوقت
         function updateTimer() {
-            if (timeLeft <= 0) return; // منع النزول تحت الصفر
+            if (timeLeft <= 0) return;
             
             timeLeft--;
             const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
@@ -443,7 +449,6 @@
                 timerDiv.classList.remove('bg-red-50', 'text-red-600', 'border-red-200', 'animate-pulse');
             }
 
-            // في حال انتهاء الوقت، أوقف المؤقت وأظهر النتيجة مباشرة
             if (timeLeft <= 0) {
                 clearInterval(timerId);
                 submitTest();
@@ -464,12 +469,16 @@
 
             currentQuestions.forEach(q => {
                 if (answers[q.id] === q.correctAnswer) {
-                    scores[q.category].correct++;
+                    // الاعتماد على الصنف الموجود بالسؤال أو البحث عنه في المصفوفات
+                    if(q.category === 'rules' || rulesBank.some(r => r.id === q.id)) scores.rules.correct++;
+                    else if(q.category === 'signs' || signsBank.some(s => s.id === q.id)) scores.signs.correct++;
+                    else scores.mechanics.correct++;
+                    
                     scores.total++;
                 }
             });
 
-            const isPassed = scores.total >= 18; // 60%
+            const isPassed = scores.total >= 18;
             const pct = Math.round((scores.total / 30) * 100);
 
             document.getElementById('result-bar').className = `h-3 w-full ${isPassed ? 'bg-green-500' : 'bg-red-500'}`;
@@ -493,10 +502,21 @@
                 const userAns = answers[q.id];
                 const isCorrect = userAns === q.correctAnswer;
                 
-                const catLabel = q.category === 'rules' ? 'قواعد سير' : q.category === 'signs' ? 'شاخصات' : 'ميكانيك';
-                const catColor = q.category === 'rules' ? 'bg-indigo-500' : q.category === 'signs' ? 'bg-orange-500' : 'bg-slate-500';
+                let catLabel, catColor;
+                if(q.category === 'rules' || rulesBank.some(r => r.id === q.id)) {
+                    catLabel = 'قواعد سير'; catColor = 'bg-indigo-500';
+                } else if(q.category === 'signs' || signsBank.some(s => s.id === q.id)) {
+                    catLabel = 'شاخصات'; catColor = 'bg-orange-500';
+                } else {
+                    catLabel = 'ميكانيك'; catColor = 'bg-slate-500';
+                }
 
-                let imgHtml = q.imageSvg ? `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl">${q.imageSvg}</div>` : '';
+                let imgHtml = '';
+                if(q.imageSvg) {
+                    imgHtml = `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl">${q.imageSvg}</div>`;
+                } else if (q.imageUrl) {
+                    imgHtml = `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl"><img src="${q.imageUrl}" class="max-h-32 object-contain rounded" /></div>`;
+                }
 
                 let html = `
                     <div class="bg-white rounded-2xl p-6 border-2 ${isCorrect ? 'border-green-100' : 'border-red-100'} shadow-sm relative overflow-hidden transition-all hover:shadow-md">
