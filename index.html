@@ -126,6 +126,7 @@
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-md border border-slate-200 p-6 md:p-10 mb-6">
+                    <!-- حاوية عرض الصورة تم تحديثها لتناسب الصور والنصوص -->
                     <div id="question-image-container" class="mb-8 w-full flex justify-center hidden"></div>
                     <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 leading-snug text-center"></h2>
                     <div id="options-container" class="space-y-3">
@@ -250,7 +251,6 @@
 
         // دالة لتوحيد تنسيق الأسئلة من الملفات وضمان وجود الإجابة الصحيحة
         function normalizeBank(data, categoryName, idPrefix) {
-            // الملفات المرفوعة تحتوي على مصفوفة الأسئلة داخل مفتاح "questions"
             const questionsArray = Array.isArray(data) ? data : (data.questions || []);
             
             return questionsArray.map((q, idx) => {
@@ -263,8 +263,9 @@
                     text: q.question || q.text,
                     options: q.options || [],
                     correctAnswer: correctAns, 
-                    imageSvg: q.svg || q.imageSvg || null,
-                    imageUrl: q.imageUrl || null
+                    // التعديل هنا: قراءة مفتاح "image" الجديد من ملفات الجيسون
+                    imageUrl: q.image || q.imageUrl || null, 
+                    imageSvg: q.svg || q.imageSvg || null 
                 };
             });
         }
@@ -273,7 +274,7 @@
             const statusText = document.getElementById('loading-status');
             
             try {
-                // جلب الملفات الثلاثة بالتزامن
+                // تأكد أن أسماء الملفات الموجودة في نفس المجلد تطابق هذه الأسماء:
                 const [rulesResponse, signsResponse, mechanicsResponse] = await Promise.all([
                     fetch('rules.json'),
                     fetch('signs.json'),
@@ -281,7 +282,7 @@
                 ]);
 
                 if (!rulesResponse.ok || !signsResponse.ok || !mechanicsResponse.ok) {
-                    throw new Error('يرجى التأكد من رفع ملفات rules.json و signs.json و mechanics.json بجانب هذا الملف.');
+                    throw new Error('يرجى التأكد من رفع ملفات rules.json و signs.json و mechanics.json بجانب هذا الملف (نفس المجلد).');
                 }
 
                 statusText.innerText = "يتم تحليل ودمج البيانات...";
@@ -290,7 +291,7 @@
                 const signsData = await signsResponse.json();
                 const mechanicsData = await mechanicsResponse.json();
 
-                // توحيد الهيكلة (هنا يتم استخراج الإجابة الصحيحة تلقائياً)
+                // توحيد الهيكلة
                 rulesBank = normalizeBank(rulesData, 'rules', 'r');
                 signsBank = normalizeBank(signsData, 'signs', 's');
                 mechanicsBank = normalizeBank(mechanicsData, 'mechanics', 'm');
@@ -304,7 +305,7 @@
                     <div class="text-red-500 text-5xl mb-4"><i class="fa-solid fa-circle-exclamation"></i></div>
                     <p class="text-red-600 font-bold text-lg mb-2">حدث خطأ أثناء تحميل الأسئلة</p>
                     <p class="text-slate-500 text-sm max-w-md text-center bg-red-50 p-3 rounded border border-red-100">${error.message}</p>
-                    <p class="text-slate-400 text-xs mt-4">تنبيه: يجب تشغيل هذه الصفحة عبر خادم محلي (Live Server) أو بعد رفعها على استضافة (مثل Github Pages).</p>
+                    <p class="text-slate-400 text-xs mt-4">تنبيه: يجب تشغيل هذه الصفحة عبر خادم محلي (Live Server) أو بعد رفعها على استضافة.</p>
                 `;
             }
         }
@@ -321,15 +322,12 @@
         }
 
         function startTest() {
-            // سحب عدد محدد من كل تصنيف
             const selectedRules = shuffle(rulesBank).slice(0, 12);
             const selectedSigns = shuffle(signsBank).slice(0, 9);
             const selectedMechs = shuffle(mechanicsBank).slice(0, 9);
 
-            // دمج الكل وخلط ترتيب الأسئلة
             const combined = shuffle([...selectedRules, ...selectedSigns, ...selectedMechs]);
             
-            // خلط خيارات الأجوبة لكل سؤال حتى لا تبقى الإجابة الصحيحة هي الأولى دائماً
             currentQuestions = combined.map(q => ({
                 ...q,
                 shuffledOptions: shuffle([...q.options])
@@ -379,7 +377,8 @@
                 imgContainer.innerHTML = q.imageSvg;
                 imgContainer.classList.remove('hidden');
             } else if (q.imageUrl) {
-                imgContainer.innerHTML = `<img src="${q.imageUrl}" alt="صورة توضيحية للسؤال" class="max-h-48 rounded shadow-sm object-contain" />`;
+                // التعديل هنا: تنسيق الصورة المستدعاة بالمسار الجديد
+                imgContainer.innerHTML = `<img src="${q.imageUrl}" alt="صورة توضيحية للسؤال" class="max-h-56 md:max-h-72 w-auto rounded-xl shadow-md border border-slate-200 object-contain bg-slate-50 p-2" />`;
                 imgContainer.classList.remove('hidden');
             } else {
                 imgContainer.innerHTML = '';
@@ -524,9 +523,10 @@
 
                 let imgHtml = '';
                 if(q.imageSvg) {
-                    imgHtml = `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl">${q.imageSvg}</div>`;
+                    imgHtml = `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl border border-slate-100">${q.imageSvg}</div>`;
                 } else if (q.imageUrl) {
-                    imgHtml = `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl"><img src="${q.imageUrl}" class="max-h-32 object-contain rounded" /></div>`;
+                    // التعديل هنا: تنسيق الصورة داخل شاشة المراجعة لتظهر بشكل جميل ولا تشوه التصميم
+                    imgHtml = `<div class="my-4 flex justify-center bg-slate-50 p-4 rounded-xl border border-slate-100"><img src="${q.imageUrl}" class="max-h-48 object-contain rounded-lg shadow-sm border border-slate-200 bg-white p-1" alt="صورة السؤال" /></div>`;
                 }
 
                 let html = `
